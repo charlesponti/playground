@@ -1,13 +1,25 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { Terminal } from "../components/terminal";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
+export function meta(): Array<{
+	title?: string;
+	name?: string;
+	content?: string;
+}> {
+	return [
+		{ title: "CHUCK.EXE - MSDOS Code Playground" },
+		{
+			name: "description",
+			content:
+				"Chuck's retro MSDOS terminal - Enter commands to explore the playground!",
+		},
+	];
 }
 
 export default function Home() {
-  return <Welcome />;
+	return (
+		<div className="flex flex-col h-full pt-0">
+			<Terminal />
+		</div>
+	);
 }
