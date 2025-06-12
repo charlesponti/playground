@@ -2,12 +2,6 @@ import { Link, useLocation } from "react-router";
 import { useState } from "react";
 
 const routes = [
-	{ path: "/", label: "Home", description: "Welcome page" },
-	{
-		path: "/playground",
-		label: "Playground",
-		description: "React components playground",
-	},
 	{
 		path: "/border-linear-gradient",
 		label: "Border Gradient",
