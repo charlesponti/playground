@@ -1,9 +1,9 @@
 .gradientBorder {
-  background: linear-gradient(
+  background: var(--glass-background-gradient, linear-gradient(
     to bottom right, 
     rgba(255, 255, 255, 0.1), 
     rgba(255, 255, 255, 0.05)
-  );
+  ));
   border-radius: var(--gradient-border-radius);
   position: relative;
   background-color: transparent;
