@@ -1,5 +1,6 @@
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
+import { Link } from "react-router";
 
 export function Welcome() {
   return (
@@ -25,6 +26,29 @@ export function Welcome() {
               What&apos;s next?
             </p>
             <ul>
+              <li>
+                <Link
+                  className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
+                  to="/svg-glass-test"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
+                  >
+                    <path
+                      d="M3 7L9 13L17 5M9 13V17M9 13H13"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Test SVG Glass Effect
+                </Link>
+              </li>
               {resources.map(({ href, text, icon }) => (
                 <li key={href}>
                   <a

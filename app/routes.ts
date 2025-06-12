@@ -4,4 +4,5 @@ export default [
   index("routes/home.tsx"),
   route("/playground", "routes/playground.tsx"),
   route("/border-linear-gradient", "routes/border-linear-gradient.tsx"),
+  route("/svg-glass-test", "routes/svg-glass-test.tsx"),
 ] satisfies RouteConfig;
