@@ -4,11 +4,10 @@
 	"type": "module",
 	"scripts": {
 		"build": "react-router build",
-		"build:pages": "NODE_ENV=production react-router build",
 		"dev": "react-router dev",
 		"lint": "biome check app  --write",
 		"format": "biome format app --write",
-		"start": "react-router-serve ./build/server/index.js",
+		"start": "react-router-serve ./build/server/index.js --port=${PORT:-3000}",
 		"typecheck": "react-router typegen && tsc"
 	},
 	"dependencies": {
