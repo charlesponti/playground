@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { useState, useRef } from "react";
 
 export default function SVGGlassTest() {
@@ -51,21 +50,11 @@ export default function SVGGlassTest() {
 
 	return (
 		<div
-			className="relative w-full h-screen overflow-hidden"
+			className="relative w-full h-screen overflow-hidden pt-16"
 			onMouseMove={handleMouseMove}
 			onMouseUp={handleMouseUp}
 			onMouseLeave={handleMouseUp}
 		>
-			{/* Navigation */}
-			<div className="absolute top-4 left-4 z-50">
-				<Link
-					to="/"
-					className="inline-flex items-center px-4 py-2 bg-black/50 text-white rounded-lg hover:bg-black/70 transition-colors backdrop-blur-sm"
-				>
-					← Back to Home
-				</Link>
-			</div>
-
 			{/* Instructions */}
 			<div className="absolute top-4 right-4 z-50 bg-black/50 text-white p-4 rounded-lg backdrop-blur-sm max-w-sm">
 				<h3 className="font-semibold mb-2">Draggable Glass Effect</h3>
