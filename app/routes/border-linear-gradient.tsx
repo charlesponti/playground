@@ -17,6 +17,12 @@ export default function Component() {
 	const [degree, setDegree] = React.useState(130);
 	const [opacities, setOpacities] = React.useState([0.8, 0.5, 0.4, 0.1]);
 	const [positions, setPositions] = React.useState([0, 25, 50, 100]);
+	const [colors, setColors] = React.useState([
+		"#ffffff",
+		"#ffffff",
+		"#ffffff",
+		"#ffffff",
+	]);
 	const [borderWidth, setBorderWidth] = React.useState(2);
 	const [backgroundImage, setBackgroundImage] = React.useState(
 		"https://images.unsplash.com/photo-1530092285049-1c42085fd395?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zmxvd2VyJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww",
@@ -40,13 +46,28 @@ export default function Component() {
 		setPositions(newPositions);
 	};
 
+	// Update a specific color value
+	const handleColorChange = (index: number, value: string) => {
+		const newColors = [...colors];
+		newColors[index] = value;
+		setColors(newColors);
+	};
+
+	// Convert hex color to rgba
+	const hexToRgba = (hex: string, opacity: number) => {
+		const r = Number.parseInt(hex.slice(1, 3), 16);
+		const g = Number.parseInt(hex.slice(3, 5), 16);
+		const b = Number.parseInt(hex.slice(5, 7), 16);
+		return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+	};
+
 	// Generate the gradient string based on current values
 	const gradientString = `linear-gradient(
     ${degree}deg, 
-    rgba(255, 255, 255, ${opacities[0]}) ${positions[0]}%,
-    rgba(255, 255, 255, ${opacities[1]}) ${positions[1]}%,
-    rgba(255, 255, 255, ${opacities[2]}) ${positions[2]}%,
-    rgba(255, 255, 255, ${opacities[3]}) ${positions[3]}%
+    ${hexToRgba(colors[0], opacities[0])} ${positions[0]}%,
+    ${hexToRgba(colors[1], opacities[1])} ${positions[1]}%,
+    ${hexToRgba(colors[2], opacities[2])} ${positions[2]}%,
+    ${hexToRgba(colors[3], opacities[3])} ${positions[3]}%
   )`;
 
 	// Generate background style based on image and color
@@ -248,6 +269,44 @@ export default function Component() {
 											max={20}
 											step={1}
 										/>
+									</div>
+								</AccordionContent>
+							</AccordionItem>
+
+							{/* Color Controls */}
+							<AccordionItem value="colors">
+								<AccordionTrigger>Color Controls</AccordionTrigger>
+								<AccordionContent>
+									<div className="space-y-4">
+										{colors.map((color, index) => (
+											<div key={`color-${index}`} className="space-y-2">
+												<label
+													htmlFor={`color-${index}`}
+													className="block text-sm font-medium"
+												>
+													Color Stop {index + 1}
+												</label>
+												<div className="flex gap-2">
+													<Input
+														id={`color-${index}`}
+														type="color"
+														value={color}
+														onChange={(e) =>
+															handleColorChange(index, e.target.value)
+														}
+														className="w-12 h-10"
+													/>
+													<Input
+														type="text"
+														value={color}
+														onChange={(e) =>
+															handleColorChange(index, e.target.value)
+														}
+														placeholder="#ffffff"
+													/>
+												</div>
+											</div>
+										))}
 									</div>
 								</AccordionContent>
 							</AccordionItem>
