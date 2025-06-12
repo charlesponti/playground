@@ -33,8 +33,6 @@ export async function loader() {
 	};
 }
 
-
-
 export default function Component() {
 	const { defaultSettings } = useLoaderData<typeof loader>();
 

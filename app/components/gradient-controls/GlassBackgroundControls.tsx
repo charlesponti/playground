@@ -58,7 +58,10 @@ export function GlassBackgroundControls({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="glass-start-color" className="block text-sm font-medium">
+				<label
+					htmlFor="glass-start-color"
+					className="block text-sm font-medium"
+				>
 					Start Color
 				</label>
 				<div className="flex gap-2">
@@ -79,13 +82,18 @@ export function GlassBackgroundControls({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="glass-start-opacity" className="block text-sm font-medium">
+				<label
+					htmlFor="glass-start-opacity"
+					className="block text-sm font-medium"
+				>
 					Start Opacity ({Math.round(glassGradient.startOpacity * 100)}%)
 				</label>
 				<Slider
 					id="glass-start-opacity"
 					value={[glassGradient.startOpacity * 100]}
-					onValueChange={(value) => updateGradient({ startOpacity: value[0] / 100 })}
+					onValueChange={(value) =>
+						updateGradient({ startOpacity: value[0] / 100 })
+					}
 					min={0}
 					max={100}
 					step={1}
@@ -114,13 +122,18 @@ export function GlassBackgroundControls({
 			</div>
 
 			<div className="space-y-2">
-				<label htmlFor="glass-end-opacity" className="block text-sm font-medium">
+				<label
+					htmlFor="glass-end-opacity"
+					className="block text-sm font-medium"
+				>
 					End Opacity ({Math.round(glassGradient.endOpacity * 100)}%)
 				</label>
 				<Slider
 					id="glass-end-opacity"
 					value={[glassGradient.endOpacity * 100]}
-					onValueChange={(value) => updateGradient({ endOpacity: value[0] / 100 })}
+					onValueChange={(value) =>
+						updateGradient({ endOpacity: value[0] / 100 })
+					}
 					min={0}
 					max={100}
 					step={1}
