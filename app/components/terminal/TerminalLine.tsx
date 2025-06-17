@@ -1,26 +1,29 @@
 import { memo } from "react";
 import type { TerminalLine as TerminalLineType } from "./types";
-import styles from "../../routes/home.module.css";
 
 interface TerminalLineProps {
 	line: TerminalLineType;
 	index: number;
 }
 
-export const TerminalLine = memo(({ line, index }: TerminalLineProps) => (
+const getLineStyles = (type: TerminalLineType["type"]) => {
+	switch (type) {
+		case "command":
+			return "text-olive-200 font-medium";
+		case "error":
+			return "text-red-300";
+		case "system":
+			return "text-amber-300/90 font-light";
+		default:
+			return "text-stone-300";
+	}
+};
+
+export const TerminalLine = memo(({ line }: TerminalLineProps) => (
 	<div
-		key={`line-${index}-${line.content.slice(0, 10)}`}
-		className={`${styles.terminalLine} ${
-			line.type === "command"
-				? styles.command
-				: line.type === "error"
-					? styles.error
-					: line.type === "system"
-						? styles.systemInfo
-						: styles.output
-		}`}
+		className={`font-mono text-sm leading-relaxed ${getLineStyles(line.type)}`}
 	>
-		{line.content}
+		<pre className="whitespace-pre-wrap font-inherit">{line.content}</pre>
 	</div>
 ));
 

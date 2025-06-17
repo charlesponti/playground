@@ -12,7 +12,8 @@ A modern, production-ready template for building full-stack React applications u
 - 🔄 Data loading and mutations
 - 🔒 TypeScript by default
 - 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- �️ TFL Traffic Cameras with Google Maps integration
+- �📖 [React Router docs](https://reactrouter.com/)
 
 ## Getting Started
 
@@ -33,6 +34,28 @@ npm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
+
+### Environment Variables
+
+Copy the example environment file and configure your API keys:
+
+```bash
+cp .env.example .env
+```
+
+For the TFL Traffic Cameras feature, you'll need a Google Maps API key and a PostgreSQL database:
+
+**Google Maps Setup:**
+- Get an API key from the [Google Cloud Console](https://console.cloud.google.com/)
+- Enable the Maps JavaScript API
+- Add your key to `.env` as `VITE_GOOGLE_MAPS_API_KEY`
+
+**Database Setup:**
+- Install PostgreSQL locally or use a cloud provider
+- Create a database for the project
+- Add your database URL to `.env` as `DATABASE_URL`
+- Run database migrations: `npm run db:migrate`
+- Populate TFL camera data: `npm run db:populate-tfl`
 
 ## Building for Production
 

@@ -5,7 +5,6 @@ import { TerminalHeader } from "./TerminalHeader";
 import { TerminalLine as TerminalLineComponent } from "./TerminalLine";
 import { TerminalInput } from "./TerminalInput";
 import { useCommandExecution } from "./useCommandExecution";
-import styles from "../../routes/home.module.css";
 
 export function Terminal() {
 	const [lines, setLines] = useState<TerminalLine[]>([]);
@@ -28,6 +27,7 @@ export function Terminal() {
 						{
 							type: "system",
 							content: BOOT_SEQUENCE[bootIndex],
+							id: `boot-${bootIndex}`,
 						},
 					]);
 					setBootIndex(bootIndex + 1);
@@ -43,10 +43,17 @@ export function Terminal() {
 		}
 	}, [isBooting, bootIndex]);
 
-	// Auto-scroll to bottom - optimized to only depend on lines length
+	// Auto-scroll to bottom
+	const linesLengthRef = useRef(lines.length);
 	useEffect(() => {
-		if (terminalRef.current) {
-			terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+		if (linesLengthRef.current !== lines.length) {
+			linesLengthRef.current = lines.length;
+			// Use requestAnimationFrame to ensure DOM has updated
+			requestAnimationFrame(() => {
+				if (terminalRef.current) {
+					terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+				}
+			});
 		}
 	}, [lines.length]);
 
@@ -109,15 +116,24 @@ export function Terminal() {
 
 	return (
 		<div
-			className={`${styles.terminal} ${styles.terminalScanEffect}`}
+			className="w-full h-full bg-stone-900/95 backdrop-blur-sm rounded-2xl overflow-hidden font-mono text-sm relative cursor-text flex flex-col"
 			onClick={handleTerminalClick}
 			onKeyDown={handleTerminalClick}
 		>
+			{/* Terminal glow effect */}
+			<div className="absolute inset-0 bg-gradient-to-br from-olive-900/20 via-transparent to-stone-900/20 pointer-events-none" />
 			<TerminalHeader />
 
-			<div className={styles.commandHistory} ref={terminalRef}>
+			<div
+				className="flex-1 overflow-y-auto p-4 pt-0 space-y-1 text-olive-100 scrollbar-thin scrollbar-thumb-stone-600 scrollbar-track-transparent"
+				ref={terminalRef}
+			>
 				{lines.map((line, index) => (
-					<TerminalLineComponent key={index} line={line} index={index} />
+					<TerminalLineComponent
+						key={line.id || `line-${index}`}
+						line={line}
+						index={index}
+					/>
 				))}
 
 				{!isBooting && (

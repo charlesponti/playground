@@ -3,14 +3,19 @@ import { useState } from "react";
 
 const routes = [
 	{
+		path: "/",
+		label: "Terminal",
+		description: "Interactive terminal playground",
+	},
+	{
 		path: "/border-linear-gradient",
 		label: "Border Gradient",
 		description: "CSS border gradient effects",
 	},
 	{
-		path: "/svg-glass-test",
-		label: "Glass Effect",
-		description: "SVG glass displacement filter",
+		path: "/tfl",
+		label: "London Cameras",
+		description: "Live traffic views",
 	},
 ];
 
@@ -26,109 +31,117 @@ export default function Navigation() {
 	};
 
 	return (
-		<nav className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-				<div className="flex justify-between h-16">
+		<nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-4xl px-4">
+			<div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-full shadow-lg px-6 py-3">
+				<div className="flex justify-between items-center">
 					{/* Logo/Brand */}
 					<div className="flex items-center">
-						<Link
-							to="/"
-							className="flex items-center space-x-2 text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors"
-						>
-							<div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-								<span className="text-white font-bold text-sm">P</span>
+						<Link to="/" className="flex items-center space-x-3 group">
+							<div className="w-8 h-8 bg-gradient-to-br from-olive-500 to-amber-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+								<span className="text-white font-serif font-medium text-sm">
+									P
+								</span>
 							</div>
-							<span>Playground</span>
+							<span className="font-serif text-lg font-medium text-stone-800 group-hover:text-olive-700 transition-colors duration-300 hidden sm:block">
+								Playground
+							</span>
 						</Link>
 					</div>
 
 					{/* Desktop Navigation */}
-					<div className="hidden md:flex items-center space-x-8">
+					<div className="hidden md:flex items-center space-x-1">
 						{routes.map((route) => (
 							<Link
 								key={route.path}
 								to={route.path}
-								className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+								className={`px-4 py-2 rounded-full text-sm font-light transition-all duration-300 ${
 									isActiveRoute(route.path)
-										? "bg-blue-100 text-blue-700"
-										: "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+										? "bg-olive-100/80 text-olive-800 font-medium"
+										: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
 								}`}
-								title={route.description}
 							>
 								{route.label}
 							</Link>
 						))}
 					</div>
 
-					{/* Mobile menu button */}
-					<div className="md:hidden flex items-center">
+					{/* Mobile Menu Button */}
+					<div className="md:hidden">
 						<button
 							type="button"
 							onClick={() => setIsOpen(!isOpen)}
-							className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-							aria-expanded="false"
+							className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300"
+							aria-label="Toggle menu"
 						>
-							<span className="sr-only">Open main menu</span>
-							{/* Hamburger icon */}
 							<svg
-								className={`${isOpen ? "hidden" : "block"} h-6 w-6`}
-								xmlns="http://www.w3.org/2000/svg"
+								className={`w-5 h-5 text-stone-700 transition-transform duration-300 ${
+									isOpen ? "rotate-45" : ""
+								}`}
 								fill="none"
-								viewBox="0 0 24 24"
 								stroke="currentColor"
+								viewBox="0 0 24 24"
 								aria-hidden="true"
 							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M4 6h16M4 12h16M4 18h16"
-								/>
-							</svg>
-							{/* Close icon */}
-							<svg
-								className={`${isOpen ? "block" : "hidden"} h-6 w-6`}
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								aria-hidden="true"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth={2}
-									d="M6 18L18 6M6 6l12 12"
-								/>
+								{isOpen ? (
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M6 18L18 6M6 6l12 12"
+									/>
+								) : (
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M4 6h16M4 12h16M4 18h16"
+									/>
+								)}
 							</svg>
 						</button>
 					</div>
 				</div>
-			</div>
 
-			{/* Mobile Navigation Menu */}
-			<div className={`md:hidden ${isOpen ? "block" : "hidden"}`}>
-				<div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-gray-200/50">
-					{routes.map((route) => (
-						<Link
-							key={route.path}
-							to={route.path}
-							onClick={() => setIsOpen(false)}
-							className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
-								isActiveRoute(route.path)
-									? "bg-blue-100 text-blue-700"
-									: "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-							}`}
-						>
-							<div>
-								<div className="font-medium">{route.label}</div>
-								<div className="text-sm text-gray-500 mt-1">
-									{route.description}
+				{/* Mobile Menu */}
+				{isOpen && (
+					<div className="md:hidden mt-4 pt-4 border-t border-white/20">
+						<div className="flex flex-col space-y-2">
+							<Link
+								to="/"
+								onClick={() => setIsOpen(false)}
+								className={`px-4 py-3 rounded-2xl text-sm font-light transition-all duration-300 ${
+									isActiveRoute("/")
+										? "bg-olive-100/80 text-olive-800 font-medium"
+										: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
+								}`}
+							>
+								<div className="flex flex-col">
+									<span>Home</span>
+									<span className="text-xs opacity-70">Welcome page</span>
 								</div>
-							</div>
-						</Link>
-					))}
-				</div>
+							</Link>
+							{routes.map((route) => (
+								<Link
+									key={route.path}
+									to={route.path}
+									onClick={() => setIsOpen(false)}
+									className={`px-4 py-3 rounded-2xl text-sm font-light transition-all duration-300 ${
+										isActiveRoute(route.path)
+											? "bg-olive-100/80 text-olive-800 font-medium"
+											: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
+									}`}
+								>
+									<div className="flex flex-col">
+										<span>{route.label}</span>
+										<span className="text-xs opacity-70">
+											{route.description}
+										</span>
+									</div>
+								</Link>
+							))}
+						</div>
+					</div>
+				)}
 			</div>
 		</nav>
 	);

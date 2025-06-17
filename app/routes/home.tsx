@@ -7,19 +7,29 @@ export function meta(): Array<{
 	content?: string;
 }> {
 	return [
-		{ title: "CHUCK.EXE - MSDOS Code Playground" },
+		{ title: "Terminal — Interactive Playground" },
 		{
 			name: "description",
 			content:
-				"Chuck's retro MSDOS terminal - Enter commands to explore the playground!",
+				"Experience our elegant terminal interface designed for modern exploration and interaction.",
 		},
 	];
 }
 
 export default function Home() {
 	return (
-		<div className="flex flex-col h-full pt-0">
-			<Terminal />
+		<div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50/20 to-stone-100">
+			{/* Hero Section */}
+			<div className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+				<div className="max-w-7xl mx-auto space-y-4">
+					{/* Terminal Container */}
+					<div className="relative bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-stone-200/50 overflow-hidden">
+						<div className="h-[60vh] max-h-[600px] min-h-[400px]">
+							<Terminal />
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }
