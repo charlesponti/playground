@@ -148,6 +148,14 @@
   position: relative;
 }
 
+.typedText {
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  white-space: pre;
+}
+
 .commandInput {
   background: transparent;
   border: none;

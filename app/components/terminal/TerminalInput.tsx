@@ -13,6 +13,8 @@ export const TerminalInput = memo(
 			<div className={styles.terminalLine}>
 				<span className={styles.prompt}>C:\CHUCK&gt; </span>
 				<span className={styles.inputWrapper}>
+					<span className={styles.typedText}>{currentCommand}</span>
+					<span className={styles.cursor}>_</span>
 					<input
 						ref={ref}
 						type="text"
@@ -22,8 +24,8 @@ export const TerminalInput = memo(
 						className={styles.commandInput}
 						autoComplete="off"
 						spellCheck="false"
+						style={{ position: "absolute", left: "-9999px", opacity: 0 }}
 					/>
-					<span className={styles.cursor}>_</span>
 				</span>
 			</div>
 		),

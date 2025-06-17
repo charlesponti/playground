@@ -1,7 +1,31 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
 import type { TerminalLine } from "./types";
-import { ASCII_LOGO, CYBER_SKULLS, MATRIX_EFFECT } from "./constants";
+import {
+  ASCII_LOGO,
+  CYBER_SKULLS,
+  MATRIX_EFFECT,
+  CAT_ASCII,
+  HACK_SEQUENCE,
+  HELP_COMMANDS,
+  TECH_STACK,
+  DIRECTORY_LISTING,
+  CAT_ANIMATION_STYLES,
+  CAT_HTML_TEMPLATE,
+  MATRIX_DELAY,
+  MATRIX_FINAL_DELAY,
+  HACK_STEP_DELAY,
+  HACK_COMPLETION_DELAY,
+  CAT_SPAWN_DELAY,
+  CAT_CLEANUP_DELAY,
+  CAT_COUNT,
+  CAT_MIN_DURATION,
+  CAT_MAX_ADDITIONAL_DURATION,
+  CAT_MIN_TOP,
+  CAT_MAX_TOP_RANGE,
+  NAVIGATION_DELAY,
+  EXIT_DELAY,
+} from "./constants";
 
 export function useCommandExecution() {
   const navigate = useNavigate();
@@ -36,34 +60,10 @@ export function useCommandExecution() {
             ...prev,
             { type: "output", content: "║ AVAILABLE COMMANDS ║" },
             { type: "output", content: "╠════════════════════╣" },
-            {
-              type: "output",
-              content: "║ HELP        - Show this help message",
-            },
-            {
-              type: "output",
-              content: "║ DIR         - List available projects",
-            },
-            { type: "output", content: "║ CLS         - Clear screen" },
-            { type: "output", content: "║ VER         - Show system version" },
-            { type: "output", content: "║ TIME        - Show current time" },
-            {
-              type: "output",
-              content: "║ GRADIENT    - Launch gradient border lab",
-            },
-            {
-              type: "output",
-              content: "║ GLASS       - Launch SVG glass effects",
-            },
-            { type: "output", content: "║ MATRIX      - Enter the Matrix" },
-            {
-              type: "output",
-              content: "║ HACK        - Initiate cyber sequence",
-            },
-            { type: "output", content: "║ NEON        - Toggle neon mode" },
-            { type: "output", content: "║ SKULL       - Display cyber skulls" },
-            { type: "output", content: "║ ABOUT       - About this system" },
-            { type: "output", content: "║ EXIT        - Shut down system" },
+            ...HELP_COMMANDS.map((cmd) => ({
+              type: "output" as const,
+              content: `║ ${cmd.command.padEnd(11)} - ${cmd.description}`,
+            })),
             { type: "output", content: "╚════════════════════╝" },
             { type: "output", content: "" },
           ]);
@@ -72,28 +72,10 @@ export function useCommandExecution() {
         case "dir":
           setLines((prev) => [
             ...prev,
-            { type: "output", content: "Directory of C:\\CHUCK\\PROJECTS" },
-            { type: "output", content: "" },
-            {
-              type: "output",
-              content:
-                "GRADIENT.EXE    1,024 bytes  Gradient Border Laboratory",
-            },
-            {
-              type: "output",
-              content: "GLASS.EXE       2,048 bytes  SVG Glass Effects Studio",
-            },
-            {
-              type: "output",
-              content: "TERMINAL.EXE    4,096 bytes  This Terminal Interface",
-            },
-            { type: "output", content: "" },
-            { type: "output", content: "        3 File(s)     7,168 bytes" },
-            {
-              type: "output",
-              content: "        0 Dir(s)    999,999 bytes free",
-            },
-            { type: "output", content: "" },
+            ...DIRECTORY_LISTING.map((line) => ({
+              type: "output" as const,
+              content: line,
+            })),
           ]);
           break;
 
@@ -137,7 +119,10 @@ export function useCommandExecution() {
             { type: "output", content: "Loading GRADIENT.EXE..." },
             { type: "output", content: "" },
           ]);
-          setTimeout(() => navigate("/border-linear-gradient"), 1500);
+          setTimeout(
+            () => navigate("/border-linear-gradient"),
+            NAVIGATION_DELAY
+          );
           break;
 
         case "glass":
@@ -150,7 +135,7 @@ export function useCommandExecution() {
             { type: "output", content: "Loading GLASS.EXE..." },
             { type: "output", content: "" },
           ]);
-          setTimeout(() => navigate("/svg-glass-test"), 1500);
+          setTimeout(() => navigate("/svg-glass-test"), NAVIGATION_DELAY);
           break;
 
         case "about":
@@ -165,10 +150,10 @@ export function useCommandExecution() {
             },
             { type: "output", content: "" },
             { type: "output", content: "Built with modern web technologies:" },
-            { type: "output", content: "• React Router v7" },
-            { type: "output", content: "• TypeScript" },
-            { type: "output", content: "• Vite" },
-            { type: "output", content: "• Tailwind CSS" },
+            ...TECH_STACK.map((tech) => ({
+              type: "output" as const,
+              content: tech,
+            })),
             { type: "output", content: "" },
             { type: "output", content: "Created by Chuck Ponti - Est. 2025" },
             { type: "output", content: "" },
@@ -188,7 +173,7 @@ export function useCommandExecution() {
                 ...prev,
                 { type: "system", content: `>> ${quote}` },
               ]);
-            }, (index + 1) * 1000);
+            }, (index + 1) * MATRIX_DELAY);
           });
           setTimeout(() => {
             setLines((prev) => [
@@ -200,7 +185,7 @@ export function useCommandExecution() {
               },
               { type: "output", content: "" },
             ]);
-          }, MATRIX_EFFECT.length * 1000 + 500);
+          }, MATRIX_EFFECT.length * MATRIX_DELAY + MATRIX_FINAL_DELAY);
           break;
 
         case "hack": {
@@ -209,22 +194,14 @@ export function useCommandExecution() {
             { type: "output", content: "Initiating cyber hack sequence..." },
             { type: "output", content: "Scanning network..." },
           ]);
-          const hackSequence = [
-            "Bypassing firewall... [████████████] 100%",
-            "Cracking encryption... [████████████] 100%",
-            "Accessing mainframe... [████████████] 100%",
-            "Downloading data... [████████████] 100%",
-            "Covering tracks... [████████████] 100%",
-            "HACK SUCCESSFUL - ACCESS GRANTED",
-          ];
-          hackSequence.forEach((step, index) => {
+          HACK_SEQUENCE.forEach((step, index) => {
             setTimeout(() => {
               setLines((prev) => [...prev, { type: "system", content: step }]);
-            }, (index + 1) * 800);
+            }, (index + 1) * HACK_STEP_DELAY);
           });
           setTimeout(() => {
             setLines((prev) => [...prev, { type: "output", content: "" }]);
-          }, hackSequence.length * 800 + 500);
+          }, HACK_SEQUENCE.length * HACK_STEP_DELAY + HACK_COMPLETION_DELAY);
           break;
         }
 
@@ -252,6 +229,69 @@ export function useCommandExecution() {
           ]);
           break;
 
+        case "meow":
+          setLines((prev) => [
+            ...prev,
+            { type: "output", content: "Summoning cyber cats..." },
+            { type: "output", content: "" },
+            ...CAT_ASCII.map((line) => ({
+              type: "system" as const,
+              content: line,
+            })),
+            { type: "output", content: "" },
+            {
+              type: "output",
+              content: "🐱 MEOW! Cats are bouncing across your screen! 🐱",
+            },
+            { type: "output", content: "" },
+          ]);
+
+          // Trigger the bouncing cats animation
+          if (typeof document !== "undefined") {
+            const terminal = document.querySelector(".terminal");
+            if (terminal) {
+              // Create multiple cats with different delays
+              for (let i = 0; i < CAT_COUNT; i++) {
+                setTimeout(() => {
+                  const cat = document.createElement("div");
+                  cat.className = "bouncing-cat";
+                  cat.innerHTML = CAT_HTML_TEMPLATE;
+                  cat.style.cssText = `
+                    position: fixed;
+                    z-index: 1000;
+                    font-size: 12px;
+                    line-height: 1;
+                    pointer-events: none;
+                    left: -100px;
+                    top: ${CAT_MIN_TOP + Math.random() * CAT_MAX_TOP_RANGE}vh;
+                    animation: bounceCat ${
+                      CAT_MIN_DURATION +
+                      Math.random() * CAT_MAX_ADDITIONAL_DURATION
+                    }s ease-out forwards;
+                  `;
+
+                  // Add animation keyframes if not already added
+                  if (!document.querySelector("#cat-animation-styles")) {
+                    const style = document.createElement("style");
+                    style.id = "cat-animation-styles";
+                    style.textContent = CAT_ANIMATION_STYLES;
+                    document.head.appendChild(style);
+                  }
+
+                  document.body.appendChild(cat);
+
+                  // Remove cat after animation
+                  setTimeout(() => {
+                    if (cat.parentNode) {
+                      cat.parentNode.removeChild(cat);
+                    }
+                  }, CAT_CLEANUP_DELAY);
+                }, i * CAT_SPAWN_DELAY);
+              }
+            }
+          }
+          break;
+
         case "exit":
           setLines((prev) => [
             ...prev,
@@ -266,7 +306,7 @@ export function useCommandExecution() {
             if (typeof window !== "undefined") {
               window.close();
             }
-          }, 2000);
+          }, EXIT_DELAY);
           break;
 
         case "":
