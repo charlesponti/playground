@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { tflCameras, covidData } from "../../drizzle/schema";
+import { tflCameras, covidData } from "./schema";
 
 // Get database URL from environment variables
 const DATABASE_URL = process.env.DATABASE_URL || process.env.VITE_DATABASE_URL;
