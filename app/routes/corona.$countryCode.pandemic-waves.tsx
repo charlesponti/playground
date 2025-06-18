@@ -178,40 +178,51 @@ export default function PandemicWavesPage() {
 											{wave.duration} days
 										</span>
 									</div>
-									
+
 									<div className="space-y-3">
 										<div>
-											<p className="text-sm text-stone-600 font-light">Peak Value</p>
+											<p className="text-sm text-stone-600 font-light">
+												Peak Value
+											</p>
 											<p className="text-xl font-light text-stone-800">
 												{wave.peakValue.toLocaleString()}
 											</p>
 										</div>
-										
+
 										<div>
-											<p className="text-sm text-stone-600 font-light">Peak Date</p>
+											<p className="text-sm text-stone-600 font-light">
+												Peak Date
+											</p>
 											<p className="text-stone-700">
 												{new Date(wave.peakDate).toLocaleDateString()}
 											</p>
 										</div>
-										
+
 										<div>
-											<p className="text-sm text-stone-600 font-light">Total Cases</p>
+											<p className="text-sm text-stone-600 font-light">
+												Total Cases
+											</p>
 											<p className="text-stone-700">
 												{wave.totalCases.toLocaleString()}
 											</p>
 										</div>
-										
+
 										<div>
-											<p className="text-sm text-stone-600 font-light">Avg Daily Growth</p>
+											<p className="text-sm text-stone-600 font-light">
+												Avg Daily Growth
+											</p>
 											<p className="text-stone-700">
 												{wave.avgDailyGrowth.toFixed(2)}%
 											</p>
 										</div>
-										
+
 										<div className="pt-2 border-t border-stone-200/50">
-											<p className="text-sm text-stone-600 font-light">Duration</p>
+											<p className="text-sm text-stone-600 font-light">
+												Duration
+											</p>
 											<p className="text-stone-700">
-												{new Date(wave.startDate).toLocaleDateString()} → {new Date(wave.endDate).toLocaleDateString()}
+												{new Date(wave.startDate).toLocaleDateString()} →{" "}
+												{new Date(wave.endDate).toLocaleDateString()}
 											</p>
 										</div>
 									</div>
@@ -226,7 +237,9 @@ export default function PandemicWavesPage() {
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Total Waves Detected</p>
+									<p className="text-stone-600 font-light mb-2">
+										Total Waves Detected
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.waves.length}
 									</p>
@@ -234,11 +247,15 @@ export default function PandemicWavesPage() {
 								<div className="text-center">
 									<p className="text-stone-600 font-light mb-2">Highest Peak</p>
 									<p className="text-3xl font-light text-stone-800">
-										{Math.max(...data.waves.map(w => w.peakValue)).toLocaleString()}
+										{Math.max(
+											...data.waves.map((w) => w.peakValue),
+										).toLocaleString()}
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Data Points Analyzed</p>
+									<p className="text-stone-600 font-light mb-2">
+										Data Points Analyzed
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.totalDataPoints.toLocaleString()}
 									</p>

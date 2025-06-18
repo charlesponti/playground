@@ -118,11 +118,22 @@ export default function SeasonalPatternsPage() {
 					<div className="bg-red-50/80 backdrop-blur-sm border border-red-200 text-red-800 px-6 py-4 rounded-2xl shadow-lg">
 						<div className="flex items-center space-x-3">
 							<div className="flex-shrink-0">
-								<svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+								<svg
+									className="h-5 w-5 text-red-400"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										fillRule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+										clipRule="evenodd"
+									/>
 								</svg>
 							</div>
-							<p className="font-medium">Failed to load seasonal patterns data. Please try again.</p>
+							<p className="font-medium">
+								Failed to load seasonal patterns data. Please try again.
+							</p>
 						</div>
 					</div>
 				)}
@@ -144,9 +155,12 @@ export default function SeasonalPatternsPage() {
 								</p>
 							</div>
 							<div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-stone-200/50 p-8 hover:bg-white/70 transition-all duration-300">
-								<h3 className="font-serif text-xl text-stone-800 mb-3">Peak Month</h3>
+								<h3 className="font-serif text-xl text-stone-800 mb-3">
+									Peak Month
+								</h3>
 								<p className="text-4xl font-light text-orange-600 mb-2">
-									{data.analysis.patterns[data.analysis.peakMonth - 1]?.monthName || "N/A"}
+									{data.analysis.patterns[data.analysis.peakMonth - 1]
+										?.monthName || "N/A"}
 								</p>
 								<p className="text-stone-600 text-sm font-light">
 									Highest average cases
@@ -157,7 +171,8 @@ export default function SeasonalPatternsPage() {
 									Trough Month
 								</h3>
 								<p className="text-4xl font-light text-emerald-600 mb-2">
-									{data.analysis.patterns[data.analysis.troughMonth - 1]?.monthName || "N/A"}
+									{data.analysis.patterns[data.analysis.troughMonth - 1]
+										?.monthName || "N/A"}
 								</p>
 								<p className="text-stone-600 text-sm font-light">
 									Lowest average cases
@@ -177,7 +192,8 @@ export default function SeasonalPatternsPage() {
 										<XAxis
 											dataKey="monthName"
 											tick={{ fill: "#57534e", fontSize: 12 }}
-											axisLine={{ stroke: "#a8a29e" }}											angle={-45}
+											axisLine={{ stroke: "#a8a29e" }}
+											angle={-45}
 											textAnchor="end"
 											height={80}
 										/>
@@ -216,7 +232,8 @@ export default function SeasonalPatternsPage() {
 										<PolarGrid stroke="#d6d3d1" />
 										<PolarAngleAxis
 											dataKey="monthName"
-											tick={{ fill: "#57534e", fontSize: 12 }}										/>
+											tick={{ fill: "#57534e", fontSize: 12 }}
+										/>
 										<PolarRadiusAxis
 											tick={{ fill: "#57534e", fontSize: 10 }}
 											domain={[0, "dataMax"]}
@@ -259,11 +276,16 @@ export default function SeasonalPatternsPage() {
 								</h2>
 								<div className="space-y-6">
 									{data.insights.map((insight) => (
-										<div key={insight.pattern} className="border-l-4 border-amber-600 pl-6 py-4 bg-amber-50/50 rounded-r-2xl">
+										<div
+											key={insight.pattern}
+											className="border-l-4 border-amber-600 pl-6 py-4 bg-amber-50/50 rounded-r-2xl"
+										>
 											<h3 className="font-serif text-lg text-stone-800 mb-2">
 												{insight.pattern}
 											</h3>
-											<p className="text-stone-600 font-light mb-2">{insight.description}</p>
+											<p className="text-stone-600 font-light mb-2">
+												{insight.description}
+											</p>
 											<p className="text-amber-700 text-sm font-medium">
 												Strength: {insight.strength}%
 											</p>
@@ -324,19 +346,25 @@ export default function SeasonalPatternsPage() {
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Total Data Points</p>
+									<p className="text-stone-600 font-light mb-2">
+										Total Data Points
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.dataQuality.totalDataPoints.toLocaleString()}
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Months with Data</p>
+									<p className="text-stone-600 font-light mb-2">
+										Months with Data
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.dataQuality.monthsWithData} / 12
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Avg Points per Month</p>
+									<p className="text-stone-600 font-light mb-2">
+										Avg Points per Month
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.dataQuality.averageDataPointsPerMonth}
 									</p>

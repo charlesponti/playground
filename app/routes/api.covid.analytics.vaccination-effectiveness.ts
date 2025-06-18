@@ -27,7 +27,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     // Since date is stored as text, we'll calculate the cutoff date as a string
     const twelveMonthsAgo = new Date();
     twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
-    const cutoffDate = twelveMonthsAgo.toISOString().split('T')[0]; // YYYY-MM-DD format
+    const cutoffDate = twelveMonthsAgo.toISOString().split("T")[0]; // YYYY-MM-DD format
 
     const timelineData = await db
       .select({
@@ -41,10 +41,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       })
       .from(covidData)
       .where(
-        and(
-          eq(covidData.isoCode, country),
-          gte(covidData.date, cutoffDate)
-        )
+        and(eq(covidData.isoCode, country), gte(covidData.date, cutoffDate))
       )
       .orderBy(covidData.date);
 

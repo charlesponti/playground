@@ -140,7 +140,10 @@ export default function OutlierDetectionPage() {
 
 				{/* Metric Selector */}
 				<div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-stone-200/50 p-8">
-					<label htmlFor="metric-select" className="block text-stone-800 font-serif text-lg mb-4">
+					<label
+						htmlFor="metric-select"
+						className="block text-stone-800 font-serif text-lg mb-4"
+					>
 						Select Metric to Analyze
 					</label>
 					<select
@@ -171,11 +174,22 @@ export default function OutlierDetectionPage() {
 					<div className="bg-red-50/80 backdrop-blur-sm border border-red-200 text-red-800 px-6 py-4 rounded-2xl shadow-lg">
 						<div className="flex items-center space-x-3">
 							<div className="flex-shrink-0">
-								<svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+								<svg
+									className="h-5 w-5 text-red-400"
+									viewBox="0 0 20 20"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path
+										fillRule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+										clipRule="evenodd"
+									/>
 								</svg>
 							</div>
-							<p className="font-medium">Failed to load outlier detection data. Please try again.</p>
+							<p className="font-medium">
+								Failed to load outlier detection data. Please try again.
+							</p>
 						</div>
 					</div>
 				)}
@@ -189,7 +203,9 @@ export default function OutlierDetectionPage() {
 								<h3 className="font-serif text-xl text-stone-800 mb-3">
 									Data Quality Score
 								</h3>
-								<p className={`text-4xl font-light mb-2 ${getQualityScoreColor(data.dataQualityScore)}`}>
+								<p
+									className={`text-4xl font-light mb-2 ${getQualityScoreColor(data.dataQualityScore)}`}
+								>
 									{(data.dataQualityScore * 100).toFixed(1)}%
 								</p>
 							</div>
@@ -232,7 +248,9 @@ export default function OutlierDetectionPage() {
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Standard Deviation</p>
+									<p className="text-stone-600 font-light mb-2">
+										Standard Deviation
+									</p>
 									<p className="text-3xl font-light text-stone-800">
 										{data.statistics.standardDeviation.toLocaleString()}
 									</p>
@@ -247,7 +265,8 @@ export default function OutlierDetectionPage() {
 									Detected Outliers
 								</h2>
 								<div className="space-y-4 max-h-96 overflow-y-auto">
-									{data.outliers.map((outlier) => (										<div
+									{data.outliers.map((outlier) => (
+										<div
 											key={`${outlier.date}-${outlier.metric}`}
 											className={`border-2 rounded-2xl p-6 ${getSeverityColor(outlier.severity)}`}
 										>
@@ -255,11 +274,10 @@ export default function OutlierDetectionPage() {
 												<div>
 													<h3 className="font-serif text-lg font-medium mb-2">
 														{new Date(outlier.date).toLocaleDateString()} -{" "}
-														{outlier.type.charAt(0).toUpperCase() + outlier.type.slice(1)}
+														{outlier.type.charAt(0).toUpperCase() +
+															outlier.type.slice(1)}
 													</h3>
-													<p className="font-light">
-														{outlier.description}
-													</p>
+													<p className="font-light">{outlier.description}</p>
 												</div>
 												<div className="text-right">
 													<p className="text-2xl font-light mb-1">
@@ -295,15 +313,18 @@ export default function OutlierDetectionPage() {
 											<div className="flex justify-between items-start">
 												<div>
 													<h3 className="font-serif text-lg font-medium mb-2">
-														{issue.issue} - {new Date(issue.date).toLocaleDateString()}
+														{issue.issue} -{" "}
+														{new Date(issue.date).toLocaleDateString()}
 													</h3>
-													<p className="font-light">
-														{issue.description}
-													</p>
+													<p className="font-light">{issue.description}</p>
 												</div>
-												<span className={`px-3 py-1 rounded-full text-xs font-medium ${
-													issue.severity === "error" ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800"
-												}`}>
+												<span
+													className={`px-3 py-1 rounded-full text-xs font-medium ${
+														issue.severity === "error"
+															? "bg-red-100 text-red-800"
+															: "bg-yellow-100 text-yellow-800"
+													}`}
+												>
 													{issue.severity}
 												</span>
 											</div>
@@ -317,50 +338,65 @@ export default function OutlierDetectionPage() {
 						{data.reportingArtifacts.length > 0 && (
 							<div className="bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-stone-200/50 p-8">
 								<h2 className="font-serif text-2xl text-stone-800 mb-6">
-										Reporting Artifacts
-							</h2>
-							<div className="space-y-4">
-								{data.reportingArtifacts.map((artifact) => (
-									<div
-										key={artifact.type}
-										className="border-2 border-blue-300 bg-blue-50 text-blue-800 rounded-2xl p-6"
-									>
-										<div className="flex justify-between items-start">
-											<div>
-												<h3 className="font-serif text-lg font-medium mb-2">{artifact.type}</h3>
-												<p className="font-light">
-													{artifact.description}
-												</p>
+									Reporting Artifacts
+								</h2>
+								<div className="space-y-4">
+									{data.reportingArtifacts.map((artifact) => (
+										<div
+											key={artifact.type}
+											className="border-2 border-blue-300 bg-blue-50 text-blue-800 rounded-2xl p-6"
+										>
+											<div className="flex justify-between items-start">
+												<div>
+													<h3 className="font-serif text-lg font-medium mb-2">
+														{artifact.type}
+													</h3>
+													<p className="font-light">{artifact.description}</p>
+												</div>
+												<span className="text-blue-600 font-medium text-xl">
+													{artifact.strength}%
+												</span>
 											</div>
-											<span className="text-blue-600 font-medium text-xl">
-												{artifact.strength}%
-											</span>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
+
+						{/* No Issues Found */}
+						{data.outliers.length === 0 &&
+							data.dataQualityIssues.length === 0 && (
+								<div className="bg-emerald-50/80 backdrop-blur-sm border border-emerald-200 text-emerald-800 px-6 py-4 rounded-2xl shadow-lg">
+									<div className="flex items-center space-x-3">
+										<div className="flex-shrink-0">
+											<svg
+												className="h-5 w-5 text-emerald-400"
+												viewBox="0 0 20 20"
+												fill="currentColor"
+												aria-hidden="true"
+											>
+												<path
+													fillRule="evenodd"
+													d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+													clipRule="evenodd"
+												/>
+											</svg>
+										</div>
+										<div>
+											<h3 className="font-serif text-lg font-medium">
+												Excellent Data Quality!
+											</h3>
+											<p className="font-light">
+												No significant outliers or data quality issues detected
+												in the selected metric.
+											</p>
 										</div>
 									</div>
-								))}
-							</div>
-						</div>
-					)}
-
-					{/* No Issues Found */}
-					{data.outliers.length === 0 && data.dataQualityIssues.length === 0 && (
-						<div className="bg-emerald-50/80 backdrop-blur-sm border border-emerald-200 text-emerald-800 px-6 py-4 rounded-2xl shadow-lg">
-							<div className="flex items-center space-x-3">
-								<div className="flex-shrink-0">
-									<svg className="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-										<path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-									</svg>
 								</div>
-								<div>
-									<h3 className="font-serif text-lg font-medium">Excellent Data Quality!</h3>
-									<p className="font-light">No significant outliers or data quality issues detected in the selected metric.</p>
-								</div>
-							</div>
-						</div>
-					)}
-				</div>
-			)}
-		</div>
-	</CoronaLayout>
-);
+							)}
+					</div>
+				)}
+			</div>
+		</CoronaLayout>
+	);
 }

@@ -13,11 +13,11 @@ export function CoronaLayout({ children, countryCode }: CoronaLayoutProps) {
 	// Handle country change
 	const handleCountryChange = (newCountryCode: string) => {
 		// Get the current route path without the country code
-		const pathParts = location.pathname.split('/');
+		const pathParts = location.pathname.split("/");
 		// Replace the country code (should be at index 2: /corona/[countryCode]/...)
-		if (pathParts.length >= 3 && pathParts[1] === 'corona') {
+		if (pathParts.length >= 3 && pathParts[1] === "corona") {
 			pathParts[2] = newCountryCode;
-			const newPath = pathParts.join('/');
+			const newPath = pathParts.join("/");
 			navigate(newPath);
 		} else {
 			// Fallback to main dashboard
@@ -66,10 +66,10 @@ export function CoronaLayout({ children, countryCode }: CoronaLayoutProps) {
 							</span>
 						</h1>
 						<p className="text-lg md:text-xl text-stone-600 font-light leading-relaxed max-w-2xl mx-auto mb-8">
-							Comprehensive insights into pandemic data, trends, and patterns with 
-							sophisticated analytical tools for informed decision-making.
+							Comprehensive insights into pandemic data, trends, and patterns
+							with sophisticated analytical tools for informed decision-making.
 						</p>
-						
+
 						{/* Country Picker */}
 						<div className="max-w-md mx-auto">
 							<CountryPicker
@@ -104,9 +104,7 @@ export function CoronaLayout({ children, countryCode }: CoronaLayoutProps) {
 
 					{/* Content Container */}
 					<div className="relative bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl border border-stone-200/50 overflow-hidden">
-						<div className="p-8">
-							{children}
-						</div>
+						<div className="p-8">{children}</div>
 					</div>
 				</div>
 			</div>

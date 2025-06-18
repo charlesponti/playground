@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const routes = [
 	{
@@ -16,6 +17,11 @@ const routes = [
 		path: "/tfl",
 		label: "London Cameras",
 		description: "Live traffic views",
+	},
+	{
+		path: "/corona",
+		label: "Corona Analytics",
+		description: "COVID-19 data and insights",
 	},
 ];
 
@@ -73,76 +79,105 @@ export default function Navigation() {
 							className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-all duration-300"
 							aria-label="Toggle menu"
 						>
-							<svg
-								className={`w-5 h-5 text-stone-700 transition-transform duration-300 ${
-									isOpen ? "rotate-45" : ""
-								}`}
+							<motion.svg
+								className="w-5 h-5 text-stone-700"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
 								aria-hidden="true"
+								animate={{ rotate: isOpen ? 45 : 0 }}
+								transition={{ duration: 0.3, ease: "easeInOut" }}
 							>
 								{isOpen ? (
-									<path
+									<motion.path
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth={2}
 										d="M6 18L18 6M6 6l12 12"
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										transition={{ delay: 0.1 }}
 									/>
 								) : (
-									<path
+									<motion.path
 										strokeLinecap="round"
 										strokeLinejoin="round"
 										strokeWidth={2}
 										d="M4 6h16M4 12h16M4 18h16"
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										transition={{ delay: 0.1 }}
 									/>
 								)}
-							</svg>
+							</motion.svg>
 						</button>
 					</div>
 				</div>
+			</div>
 
-				{/* Mobile Menu */}
+			{/* Mobile Menu - Outside of rounded container */}
+			<AnimatePresence>
 				{isOpen && (
-					<div className="md:hidden mt-4 pt-4 border-t border-white/20">
+					<motion.div
+						className="md:hidden mt-4 bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg p-4"
+						initial={{ opacity: 0, scale: 0.95, y: -10 }}
+						animate={{ opacity: 1, scale: 1, y: 0 }}
+						exit={{ opacity: 0, scale: 0.95, y: -10 }}
+						transition={{ 
+							duration: 0.25, 
+							ease: "easeOut"
+						}}
+					>
 						<div className="flex flex-col space-y-2">
-							<Link
-								to="/"
-								onClick={() => setIsOpen(false)}
-								className={`px-4 py-3 rounded-2xl text-sm font-light transition-all duration-300 ${
-									isActiveRoute("/")
-										? "bg-olive-100/80 text-olive-800 font-medium"
-										: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
-								}`}
+							<motion.div
+								initial={{ opacity: 0, x: -20 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ delay: 0.1, duration: 0.3 }}
 							>
-								<div className="flex flex-col">
-									<span>Home</span>
-									<span className="text-xs opacity-70">Welcome page</span>
-								</div>
-							</Link>
-							{routes.map((route) => (
 								<Link
-									key={route.path}
-									to={route.path}
+									to="/"
 									onClick={() => setIsOpen(false)}
-									className={`px-4 py-3 rounded-2xl text-sm font-light transition-all duration-300 ${
-										isActiveRoute(route.path)
+									className={`px-4 py-3 rounded-lg text-sm font-light transition-all duration-300 ${
+										isActiveRoute("/")
 											? "bg-olive-100/80 text-olive-800 font-medium"
 											: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
 									}`}
 								>
 									<div className="flex flex-col">
-										<span>{route.label}</span>
-										<span className="text-xs opacity-70">
-											{route.description}
-										</span>
+										<span>Home</span>
+										<span className="text-xs opacity-70">Welcome page</span>
 									</div>
 								</Link>
+							</motion.div>
+							{routes.map((route, index) => (
+								<motion.div
+									key={route.path}
+									initial={{ opacity: 0, x: -20 }}
+									animate={{ opacity: 1, x: 0 }}
+									transition={{ delay: 0.1 + (index + 1) * 0.05, duration: 0.3 }}
+								>
+									<Link
+										to={route.path}
+										onClick={() => setIsOpen(false)}
+										className={`px-4 py-3 rounded-lg text-sm font-light transition-all duration-300 ${
+											isActiveRoute(route.path)
+												? "bg-olive-100/80 text-olive-800 font-medium"
+												: "text-stone-700 hover:bg-white/40 hover:text-stone-900"
+										}`}
+									>
+										<div className="flex flex-col">
+											<span>{route.label}</span>
+											<span className="text-xs opacity-70">
+												{route.description}
+											</span>
+										</div>
+									</Link>
+								</motion.div>
 							))}
 						</div>
-					</div>
+					</motion.div>
 				)}
-			</div>
+			</AnimatePresence>
 		</nav>
 	);
 }

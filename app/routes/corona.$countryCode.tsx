@@ -96,7 +96,9 @@ export default function CoronaDashboardPage() {
 		return (
 			<CoronaLayout countryCode={countryCode}>
 				<div className="bg-amber-50/50 border border-amber-200 rounded-2xl p-8 text-center">
-					<h3 className="font-serif text-xl font-medium text-amber-800 mb-3">No Data Available</h3>
+					<h3 className="font-serif text-xl font-medium text-amber-800 mb-3">
+						No Data Available
+					</h3>
 					<p className="text-amber-700 font-light">
 						No COVID data is currently available for the selected country.
 					</p>
@@ -120,7 +122,9 @@ export default function CoronaDashboardPage() {
 				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 					{/* Cases Timeline */}
 					<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Total Cases Over Time</h3>
+						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+							Total Cases Over Time
+						</h3>
 						<TimeSeriesChart
 							data={timeSeriesData}
 							metric="totalCases"
@@ -131,7 +135,9 @@ export default function CoronaDashboardPage() {
 
 					{/* Deaths Timeline */}
 					<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Total Deaths Over Time</h3>
+						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+							Total Deaths Over Time
+						</h3>
 						<TimeSeriesChart
 							data={timeSeriesData}
 							metric="totalDeaths"
@@ -142,7 +148,9 @@ export default function CoronaDashboardPage() {
 
 					{/* New Cases Timeline */}
 					<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">New Cases (7-day average)</h3>
+						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+							New Cases (7-day average)
+						</h3>
 						<TimeSeriesChart
 							data={timeSeriesData}
 							metric="newCasesSmoothed"
@@ -153,11 +161,10 @@ export default function CoronaDashboardPage() {
 
 					{/* Vaccination Progress */}
 					<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Vaccination Progress (%)</h3>
-						<VaccinationProgress
-							data={timeSeriesData}
-							title=""
-						/>
+						<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+							Vaccination Progress (%)
+						</h3>
+						<VaccinationProgress data={timeSeriesData} title="" />
 					</div>
 				</div>
 
@@ -220,7 +227,9 @@ export default function CoronaDashboardPage() {
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 						{/* New Deaths Timeline */}
 						<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-							<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">New Deaths (7-day average)</h3>
+							<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+								New Deaths (7-day average)
+							</h3>
 							<TimeSeriesChart
 								data={timeSeriesData}
 								metric="newDeathsSmoothed"
@@ -231,7 +240,9 @@ export default function CoronaDashboardPage() {
 
 						{/* Reproduction Rate */}
 						<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-							<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Reproduction Rate (R)</h3>
+							<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+								Reproduction Rate (R)
+							</h3>
 							<TimeSeriesChart
 								data={timeSeriesData}
 								metric="reproductionRate"
@@ -246,7 +257,9 @@ export default function CoronaDashboardPage() {
 								record.newVaccinationsSmoothed !== null,
 						) ? (
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">New Vaccinations (7-day average)</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+									New Vaccinations (7-day average)
+								</h3>
 								<TimeSeriesChart
 									data={timeSeriesData}
 									metric="newVaccinationsSmoothed"
@@ -256,7 +269,9 @@ export default function CoronaDashboardPage() {
 							</div>
 						) : (
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Total Deaths per Million</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+									Total Deaths per Million
+								</h3>
 								<TimeSeriesChart
 									data={timeSeriesData}
 									metric="totalDeathsPerMillion"
@@ -271,7 +286,9 @@ export default function CoronaDashboardPage() {
 							(record: CovidDataSelect) => record.positiveRate !== null,
 						) ? (
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Test Positivity Rate</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+									Test Positivity Rate
+								</h3>
 								<TimeSeriesChart
 									data={timeSeriesData}
 									metric="positiveRate"
@@ -284,7 +301,9 @@ export default function CoronaDashboardPage() {
 									record.icuPatientsPerMillion !== null,
 							) ? (
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">ICU Patients per Million</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+									ICU Patients per Million
+								</h3>
 								<TimeSeriesChart
 									data={timeSeriesData}
 									metric="icuPatientsPerMillion"
@@ -294,7 +313,9 @@ export default function CoronaDashboardPage() {
 							</div>
 						) : (
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">Total Cases per Million</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-4">
+									Total Cases per Million
+								</h3>
 								<TimeSeriesChart
 									data={timeSeriesData}
 									metric="totalCasesPerMillion"

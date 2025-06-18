@@ -92,10 +92,11 @@ export default function VaccinationEffectivenessPage() {
 						Vaccination Effectiveness
 					</h1>
 					<p className="text-lg text-stone-600 font-light">
-						Comprehensive analysis of vaccination impact and effectiveness metrics
+						Comprehensive analysis of vaccination impact and effectiveness
+						metrics
 					</p>
 				</div>
-				
+
 				{/* Loading State */}
 				{isLoading && (
 					<div className="flex justify-center items-center h-64">
@@ -123,27 +124,37 @@ export default function VaccinationEffectivenessPage() {
 						{/* Effectiveness Metrics */}
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">Overall Effectiveness</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">
+									Overall Effectiveness
+								</h3>
 								<p className="text-3xl font-light text-olive-600">
-									{data.effectiveness.overall?.toFixed(1) || '0.0'}%
+									{data.effectiveness.overall?.toFixed(1) || "0.0"}%
 								</p>
 							</div>
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">Against Hospitalization</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">
+									Against Hospitalization
+								</h3>
 								<p className="text-3xl font-light text-green-600">
-									{data.effectiveness.againstHospitalization?.toFixed(1) || '0.0'}%
+									{data.effectiveness.againstHospitalization?.toFixed(1) ||
+										"0.0"}
+									%
 								</p>
 							</div>
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">Against Death</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">
+									Against Death
+								</h3>
 								<p className="text-3xl font-light text-purple-600">
-									{data.effectiveness.againstDeath?.toFixed(1) || '0.0'}%
+									{data.effectiveness.againstDeath?.toFixed(1) || "0.0"}%
 								</p>
 							</div>
 							<div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-stone-200/50 hover:bg-white/50 transition-all duration-300">
-								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">Breakthrough Rate</h3>
+								<h3 className="font-serif text-lg font-medium text-stone-800 mb-2">
+									Breakthrough Rate
+								</h3>
 								<p className="text-3xl font-light text-amber-600">
-									{data.effectiveness.breakthroughRate?.toFixed(1) || '0.0'}%
+									{data.effectiveness.breakthroughRate?.toFixed(1) || "0.0"}%
 								</p>
 							</div>
 						</div>
@@ -155,21 +166,32 @@ export default function VaccinationEffectivenessPage() {
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Fully Vaccinated</p>
+									<p className="text-stone-600 font-light mb-2">
+										Fully Vaccinated
+									</p>
 									<p className="text-2xl font-light text-stone-800">
-										{data.vaccinationStats?.fullyVaccinatedPerHundred?.toFixed(1) || '0.0'}%
+										{data.vaccinationStats?.fullyVaccinatedPerHundred?.toFixed(
+											1,
+										) || "0.0"}
+										%
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Total Vaccinations</p>
+									<p className="text-stone-600 font-light mb-2">
+										Total Vaccinations
+									</p>
 									<p className="text-2xl font-light text-stone-800">
-										{data.vaccinationStats?.totalVaccinations?.toLocaleString() || '0'}
+										{data.vaccinationStats?.totalVaccinations?.toLocaleString() ||
+											"0"}
 									</p>
 								</div>
 								<div className="text-center">
-									<p className="text-stone-600 font-light mb-2">Daily Vaccinations</p>
+									<p className="text-stone-600 font-light mb-2">
+										Daily Vaccinations
+									</p>
 									<p className="text-2xl font-light text-stone-800">
-										{data.vaccinationStats?.dailyVaccinations?.toLocaleString() || '0'}
+										{data.vaccinationStats?.dailyVaccinations?.toLocaleString() ||
+											"0"}
 									</p>
 								</div>
 							</div>
@@ -189,7 +211,9 @@ export default function VaccinationEffectivenessPage() {
 												dataKey="date"
 												tick={{ fill: "#57534e" }}
 												axisLine={{ stroke: "#a8a29e" }}
-												tickFormatter={(value) => new Date(value).toLocaleDateString()}
+												tickFormatter={(value) =>
+													new Date(value).toLocaleDateString()
+												}
 											/>
 											<YAxis
 												tick={{ fill: "#57534e" }}
@@ -202,7 +226,9 @@ export default function VaccinationEffectivenessPage() {
 													borderRadius: "12px",
 													color: "#1c1917",
 												}}
-												labelFormatter={(value) => new Date(value).toLocaleDateString()}
+												labelFormatter={(value) =>
+													new Date(value).toLocaleDateString()
+												}
 											/>
 											<Line
 												type="monotone"
@@ -231,10 +257,15 @@ export default function VaccinationEffectivenessPage() {
 							</h2>
 							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 								{data.milestones?.map((milestone) => (
-									<div key={milestone.threshold} className="bg-white/30 border border-stone-200/50 rounded-xl p-4">
-										<h3 className="font-medium text-stone-800 mb-2">{milestone.label}</h3>
+									<div
+										key={milestone.threshold}
+										className="bg-white/30 border border-stone-200/50 rounded-xl p-4"
+									>
+										<h3 className="font-medium text-stone-800 mb-2">
+											{milestone.label}
+										</h3>
 										<p className="text-stone-600 font-light">
-											{milestone.dateReached 
+											{milestone.dateReached
 												? new Date(milestone.dateReached).toLocaleDateString()
 												: "Not reached"}
 										</p>

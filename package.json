@@ -34,6 +34,7 @@
 		"dotenv": "^16.5.0",
 		"drizzle-kit": "^0.31.1",
 		"drizzle-orm": "^0.44.2",
+		"framer-motion": "^12.18.1",
 		"isbot": "^5.1.27",
 		"lucide-react": "^0.514.0",
 		"postgres": "^3.4.7",
