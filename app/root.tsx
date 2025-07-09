@@ -1,16 +1,18 @@
 import {
-	isRouteErrorResponse,
 	Links,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	isRouteErrorResponse,
 } from "react-router";
 
 import type { Route } from "./+types/root";
 import Navigation from "./components/Navigation";
 import QueryProvider from "./components/QueryProvider";
+import Sidebar from "./components/Sidebar";
 import "./app.css";
+import { useState } from "react";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -44,10 +46,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+	const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+	const toggleSidebar = () => {
+		setSidebarOpen(!isSidebarOpen);
+	};
+
 	return (
 		<QueryProvider>
-			<Navigation />
-			<Outlet />
+			<Navigation toggleSidebar={toggleSidebar} />
+			<Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+			<main className="flex-1 pt-20 p-4 transition-all duration-300">
+				<Outlet />
+			</main>
 		</QueryProvider>
 	);
 }

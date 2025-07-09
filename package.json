@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "react-router build",
 		"dev": "react-router dev",
-		"lint": "biome check app  --write",
+		"lint": "biome check app --write",
 		"format": "biome format app --write",
 		"start": "react-router-serve ./build/server/index.js --port=${PORT:-3000}",
 		"test": "vitest run --environment jsdom --coverage --reporter verbose --passWithNoTests",
@@ -16,6 +16,7 @@
 		"db:populate-tfl": "tsx scripts/populate-tfl.ts"
 	},
 	"dependencies": {
+		"@emotion/styled": "^11.14.1",
 		"@radix-ui/react-accordion": "^1.2.11",
 		"@radix-ui/react-dialog": "^1.1.14",
 		"@radix-ui/react-popover": "^1.1.14",
@@ -53,9 +54,12 @@
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/react": "^16.3.0",
 		"@testing-library/user-event": "^14.6.1",
+		"@types/axios": "^0.9.36",
+		"@types/next": "^8.0.7",
 		"@types/node": "^20",
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
+		"@types/react-router-dom": "^5.3.3",
 		"@vitest/coverage-v8": "^3.2.3",
 		"jsdom": "^26.1.0",
 		"tailwindcss": "^4.1.10",

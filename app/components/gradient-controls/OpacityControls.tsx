@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { Slider } from "~/components/ui/slider";
 
 interface OpacityControlsProps {
@@ -5,24 +6,48 @@ interface OpacityControlsProps {
 	onOpacityChange: (index: number, value: number) => void;
 }
 
+interface OpacityItem {
+	id: string;
+	value: number;
+	originalIndex: number;
+}
+
 export function OpacityControls({
 	opacities,
 	onOpacityChange,
 }: OpacityControlsProps) {
+	const opacityItems = useMemo(() => {
+		return opacities.map((opacity, index) => ({
+			id: `${index}-${opacity}`,
+			value: opacity,
+			originalIndex: index,
+		}));
+	}, [opacities]);
+
+	const handleValueChange = (id: string, newValue: number) => {
+		const item = opacityItems.find((item) => item.id === id);
+		if (item) {
+			onOpacityChange(item.originalIndex, newValue);
+		}
+	};
+
 	return (
 		<div className="space-y-4">
-			{opacities.map((opacity, index) => (
-				<div key={`opacity-stop-${index}`} className="space-y-2">
+			{opacityItems.map((item) => (
+				<div key={item.id} className="space-y-2">
 					<label
-						htmlFor={`opacity-${index}`}
+						htmlFor={`opacity-${item.id}`}
 						className="block text-sm font-medium"
 					>
-						Color Stop {index + 1} Opacity ({Math.round(opacity * 100)}%)
+						Color Stop {item.originalIndex + 1} Opacity (
+						{Math.round(item.value * 100)}%)
 					</label>
 					<Slider
-						id={`opacity-${index}`}
-						value={[opacity * 100]}
-						onValueChange={(value) => onOpacityChange(index, value[0])}
+						id={`opacity-${item.id}`}
+						value={[item.value * 100]}
+						onValueChange={(value) =>
+							handleValueChange(item.id, value[0] / 100)
+						}
 						min={0}
 						max={100}
 						step={1}

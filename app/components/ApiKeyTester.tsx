@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GOOGLE_MAPS_API_KEY } from "~/lib/constants";
 
 export default function ApiKeyTester() {

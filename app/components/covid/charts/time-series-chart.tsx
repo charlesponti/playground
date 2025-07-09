@@ -1,6 +1,5 @@
 "use client";
 
-import type { CovidDataRecord } from "~/types/covid";
 import {
 	Line,
 	LineChart,
@@ -9,6 +8,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import type { CovidDataRecord } from "~/types/covid";
 
 interface TimeSeriesChartProps {
 	data: CovidDataRecord[];

@@ -1,16 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
-import { useQuery } from "@tanstack/react-query";
-import { CoronaLayout } from "~/components/CoronaLayout";
 import {
-	LineChart,
+	CartesianGrid,
 	Line,
+	LineChart,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
 	YAxis,
-	CartesianGrid,
 } from "recharts";
+import { CoronaLayout } from "~/components/CoronaLayout";
 
 interface VaccinationEffectiveness {
 	overall: number;
@@ -69,7 +69,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function VaccinationEffectivenessPage() {
-	const { countryCode } = useLoaderData<typeof loader>();
+	const { countryCode } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
 	const { data, isLoading, isError } = useQuery<VaccinationResponse>({
 		queryKey: ["vaccination-effectiveness", countryCode],

@@ -1,6 +1,5 @@
 "use client";
 
-import type { CovidDataRecord } from "~/types/covid";
 import {
 	Legend,
 	Line,
@@ -10,6 +9,12 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import type { CovidDataRecord } from "~/types/covid";
+
+interface CombinedDataItem {
+	date: string;
+	[key: string]: number | string; // For dynamic metric keys
+}
 
 interface ComparativeChartProps {
 	data: CovidDataRecord[];
@@ -29,7 +34,7 @@ export function ComparativeChart({
 	height = 400,
 }: ComparativeChartProps) {
 	// Combine data for all metrics
-	const combinedData = new Map<string, any>();
+	const combinedData = new Map<string, CombinedDataItem>();
 
 	for (const { key, name } of metrics) {
 		const metricData = data

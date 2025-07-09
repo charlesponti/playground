@@ -1,7 +1,7 @@
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import {
 	Bar,
 	BarChart,
@@ -58,7 +58,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function PandemicWavesPage() {
-	const { countryCode } = useLoaderData<typeof loader>();
+	const { countryCode } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 	const [metric, setMetric] = useState<string>("newCasesSmoothed");
 
 	const { data, isLoading, isError } = useQuery<WaveAnalysisResponse>({

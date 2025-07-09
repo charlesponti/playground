@@ -1,17 +1,17 @@
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
+import { CoronaLayout } from "~/components/CoronaLayout";
+import { StatsOverview } from "~/components/covid/charts/stats-overview";
+import { TimeSeriesChart } from "~/components/covid/charts/time-series-chart";
+import { TopCountriesChart } from "~/components/covid/charts/top-countries-chart";
+import { VaccinationProgress } from "~/components/covid/charts/vaccination-progress";
+import type { CovidDataSelect } from "~/db/schema";
 import {
 	getAvailableCountries,
 	getCovidStats,
 	getCovidTimeSeries,
 	getGlobalCovidData,
 } from "~/lib/covid-actions";
-import type { CovidDataSelect } from "~/db/schema";
-import { StatsOverview } from "~/components/covid/charts/stats-overview";
-import { TimeSeriesChart } from "~/components/covid/charts/time-series-chart";
-import { TopCountriesChart } from "~/components/covid/charts/top-countries-chart";
-import { VaccinationProgress } from "~/components/covid/charts/vaccination-progress";
-import { CoronaLayout } from "~/components/CoronaLayout";
 
 export const meta: MetaFunction<typeof loader> = ({ params }) => {
 	const countryCode = params.countryCode || "OWID_WRL";
@@ -90,7 +90,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function CoronaDashboardPage() {
 	const { countryCode, statsData, timeSeriesData, globalComparisonData } =
-		useLoaderData<typeof loader>();
+		useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
 	if (!timeSeriesData || timeSeriesData.length === 0) {
 		return (

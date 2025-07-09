@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 // import { ASCII_LOGO } from "./constants";
 
 export const TerminalHeader = memo(() => (

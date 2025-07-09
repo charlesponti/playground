@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import type { TerminalLine } from "./types";
-import { BOOT_SEQUENCE } from "./constants";
+import type React from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TerminalHeader } from "./TerminalHeader";
-import { TerminalLine as TerminalLineComponent } from "./TerminalLine";
 import { TerminalInput } from "./TerminalInput";
+import { TerminalLine as TerminalLineComponent } from "./TerminalLine";
+import { BOOT_SEQUENCE } from "./constants";
+import type { TerminalLine } from "./types";
 import { useCommandExecution } from "./useCommandExecution";
 
 export function Terminal() {

@@ -48,6 +48,7 @@ export interface CovidDataRecord {
 	newVaccinationsSmoothedPerMillion: number | null;
 	newPeopleVaccinatedSmoothed: number | null;
 	newPeopleVaccinatedSmoothedPerHundred: number | null;
+	vaccinationDataDate?: string | null;
 	stringencyIndex: number | null;
 	populationDensity: number | null;
 	medianAge: number | null;

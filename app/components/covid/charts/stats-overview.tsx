@@ -113,13 +113,11 @@ export function StatsOverview({ data, countryCode }: StatsOverviewProps) {
 			{latestData.date && (
 				<div className="text-sm text-gray-500 text-center">
 					<p>Data as of {new Date(latestData.date).toLocaleDateString()}</p>
-					{(latestData as any).vaccinationDataDate &&
-						(latestData as any).vaccinationDataDate !== latestData.date && (
+					{latestData.vaccinationDataDate &&
+						latestData.vaccinationDataDate !== latestData.date && (
 							<p className="text-xs mt-1">
 								Vaccination data as of{" "}
-								{new Date(
-									(latestData as any).vaccinationDataDate,
-								).toLocaleDateString()}
+								{new Date(latestData.vaccinationDataDate).toLocaleDateString()}
 							</p>
 						)}
 				</div>

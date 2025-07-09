@@ -1,4 +1,5 @@
-import { memo, forwardRef } from "react";
+import type React from "react";
+import { forwardRef, memo } from "react";
 
 interface TerminalInputProps {
 	currentCommand: string;

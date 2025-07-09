@@ -1,4 +1,8 @@
-import { useState, useRef } from "react";
+import type React from "react";
+import { useCallback, useRef, useState } from "react";
+import { cn } from "~/lib/utils";
+
+const DISPLACEMENT_FILTER_ID = "displacementFilter4";
 
 export default function SVGGlassTest() {
 	const [position, setPosition] = useState({ x: 50, y: 50 });
@@ -9,44 +13,45 @@ export default function SVGGlassTest() {
 		blue: -152,
 	});
 	const [showControls, setShowControls] = useState(true);
-	const [backgroundImage, setBackgroundImage] = useState<string>("");
-	const dragRef = useRef<{
-		startX: number;
-		startY: number;
-		startMouseX: number;
-		startMouseY: number;
-	}>({
+	const [backgroundImage, setBackgroundImage] = useState("");
+	const dragRef = useRef({
 		startX: 0,
 		startY: 0,
 		startMouseX: 0,
 		startMouseY: 0,
 	});
 
-	const handleMouseDown = (e: React.MouseEvent) => {
-		setIsDragging(true);
-		dragRef.current = {
-			startX: position.x,
-			startY: position.y,
-			startMouseX: e.clientX,
-			startMouseY: e.clientY,
-		};
-	};
+	const handleMouseDown = useCallback(
+		(e: React.MouseEvent) => {
+			setIsDragging(true);
+			dragRef.current = {
+				startX: position.x,
+				startY: position.y,
+				startMouseX: e.clientX,
+				startMouseY: e.clientY,
+			};
+		},
+		[position.x, position.y],
+	);
 
-	const handleMouseMove = (e: React.MouseEvent) => {
-		if (!isDragging) return;
+	const handleMouseMove = useCallback(
+		(e: React.MouseEvent) => {
+			if (!isDragging) return;
 
-		const deltaX = e.clientX - dragRef.current.startMouseX;
-		const deltaY = e.clientY - dragRef.current.startMouseY;
+			const deltaX = e.clientX - dragRef.current.startMouseX;
+			const deltaY = e.clientY - dragRef.current.startMouseY;
 
-		setPosition({
-			x: dragRef.current.startX + deltaX,
-			y: dragRef.current.startY + deltaY,
-		});
-	};
+			setPosition({
+				x: dragRef.current.startX + deltaX,
+				y: dragRef.current.startY + deltaY,
+			});
+		},
+		[isDragging],
+	);
 
-	const handleMouseUp = () => {
+	const handleMouseUp = useCallback(() => {
 		setIsDragging(false);
-	};
+	}, []);
 
 	return (
 		<div
@@ -250,23 +255,7 @@ export default function SVGGlassTest() {
 					<div className="w-full h-full bg-gradient-to-br from-cyan-400 via-purple-500 to-pink-600">
 						{/* Pattern overlay */}
 						<div className="absolute inset-0 opacity-50">
-							<div className="grid grid-cols-8 h-full">
-								{Array.from({ length: 64 }).map((_, i) => (
-									<div
-										key={`pattern-${i}`}
-										className={`
-											${i % 8 === 0 ? "bg-red-500" : ""}
-											${i % 8 === 1 ? "bg-orange-500" : ""}
-											${i % 8 === 2 ? "bg-yellow-500" : ""}
-											${i % 8 === 3 ? "bg-green-500" : ""}
-											${i % 8 === 4 ? "bg-blue-500" : ""}
-											${i % 8 === 5 ? "bg-indigo-500" : ""}
-											${i % 8 === 6 ? "bg-purple-500" : ""}
-											${i % 8 === 7 ? "bg-pink-500" : ""}
-										`}
-									/>
-								))}
-							</div>
+							<PatternedBackground />
 						</div>
 
 						{/* Text content */}
@@ -296,7 +285,6 @@ export default function SVGGlassTest() {
 						</div>
 
 						{/* Additional visual elements */}
-						<div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white/30 rounded-full backdrop-blur-sm" />
 						<div className="absolute top-1/2 left-1/6 w-24 h-64 bg-yellow-400/50 rounded-full transform -rotate-12" />
 					</div>
 				)}
@@ -304,120 +292,24 @@ export default function SVGGlassTest() {
 
 			{/* SVG Filter Definition */}
 			<div style={{ position: "absolute", top: "-999px", left: "-999px" }}>
-				<svg
-					width="200"
-					height="200"
-					viewBox="0 0 220 220"
-					xmlns="http://www.w3.org/2000/svg"
-					aria-hidden="true"
-				>
-					<filter id="displacementFilter4">
-						<feImage
-							href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%230001' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF' style='filter:blur(5px)' /%3E%3C/svg%3E"
-							x="0%"
-							y="0%"
-							width="100%"
-							height="100%"
-							result="thing9"
-						/>
-						<feImage
-							href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF1' style='filter:blur(15px)' /%3E%3C/svg%3E"
-							x="0%"
-							y="0%"
-							width="100%"
-							height="100%"
-							result="thing0"
-						/>
-						<feImage
-							href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3C/svg%3E"
-							x="0%"
-							y="0%"
-							width="100%"
-							height="100%"
-							result="thing1"
-						/>
-						<feImage
-							href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='gradient1' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300F'/%3E%3C/linearGradient%3E%3ClinearGradient id='gradient2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='200' height='200' rx='25' fill='%237F7F7F' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient1)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient2)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%237F7F7FBB' style='filter:blur(5px)' /%3E%3C/svg%3E"
-							x="0%"
-							y="0%"
-							width="100%"
-							height="100%"
-							result="thing2"
-						/>
-						<feDisplacementMap
-							in2="thing2"
-							in="SourceGraphic"
-							scale={displacements.red.toString()}
-							xChannelSelector="B"
-							yChannelSelector="G"
-						/>
-						<feColorMatrix
-							type="matrix"
-							values="1 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
-							result="disp1"
-						/>
-						<feDisplacementMap
-							in2="thing2"
-							in="SourceGraphic"
-							scale={displacements.green.toString()}
-							xChannelSelector="B"
-							yChannelSelector="G"
-						/>
-						<feColorMatrix
-							type="matrix"
-							values="0 0 0 0 0
-                      0 1 0 0 0
-                      0 0 0 0 0
-                      0 0 0 1 0"
-							result="disp2"
-						/>
-						<feDisplacementMap
-							in2="thing2"
-							in="SourceGraphic"
-							scale={displacements.blue.toString()}
-							xChannelSelector="B"
-							yChannelSelector="G"
-						/>
-						<feColorMatrix
-							type="matrix"
-							values="0 0 0 0 0
-                      0 0 0 0 0
-                      0 0 1 0 0
-                      0 0 0 1 0"
-							result="disp3"
-						/>
-						<feBlend in2="disp2" mode="screen" />
-						<feBlend in2="disp1" mode="screen" />
-						<feGaussianBlur stdDeviation="0.7" />
-						<feBlend in2="thing0" mode="screen" />
-						<feBlend in2="thing9" mode="multiply" />
-						<feComposite in2="thing1" operator="in" />
-						<feOffset dx="43" dy="43" />
-					</filter>
-				</svg>
+				<DisplacementFilter displacements={displacements} />
 			</div>
 
 			{/* Draggable Glass Overlay */}
 			<div
 				style={{
-					position: "absolute",
 					left: `${position.x}px`,
 					top: `${position.y}px`,
-					width: "200px",
-					height: "200px",
 					cursor: isDragging ? "grabbing" : "grab",
-					zIndex: 1000,
 				}}
+				className="absolute size-[200px] z-[90]"
 				onMouseDown={handleMouseDown}
 			>
 				<div
 					style={{
 						width: "100%",
 						height: "100%",
-						backdropFilter: "url(#displacementFilter4)",
+						backdropFilter: `url(#${DISPLACEMENT_FILTER_ID})`,
 						border: "2px solid rgba(255, 255, 255, 0.3)",
 						borderRadius: "8px",
 						boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
@@ -431,3 +323,127 @@ export default function SVGGlassTest() {
 		</div>
 	);
 }
+
+const PatternedBackground = () => {
+	return (
+		<div className="grid grid-cols-8 h-full">
+			{Array.from({ length: 64 }).map((_, i) => (
+				<div
+					// biome-ignore lint/suspicious/noArrayIndexKey: This is a static array for visual pattern, index is stable.
+					key={`static-pattern-${i}`}
+					className={cn({
+						"bg-red-500": i % 8 === 0,
+						"bg-orange-500": i % 8 === 1,
+						"bg-yellow-500": i % 8 === 2,
+						"bg-green-500": i % 8 === 3,
+						"bg-blue-500": i % 8 === 4,
+						"bg-indigo-500": i % 8 === 5,
+						"bg-purple-500": i % 8 === 6,
+						"bg-pink-500": i % 8 === 7,
+					})}
+				/>
+			))}
+		</div>
+	);
+};
+
+const DisplacementFilter = ({
+	displacements,
+}: { displacements: { red: number; green: number; blue: number } }) => {
+	return (
+		<svg
+			width="200"
+			height="200"
+			viewBox="0 0 220 220"
+			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
+		>
+			<filter id={DISPLACEMENT_FILTER_ID}>
+				<feImage
+					href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%230001' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF' style='filter:blur(5px)' /%3E%3C/svg%3E"
+					x="0%"
+					y="0%"
+					width="100%"
+					height="100%"
+					result="thing9"
+				/>
+				<feImage
+					href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23FFF1' style='filter:blur(15px)' /%3E%3C/svg%3E"
+					x="0%"
+					y="0%"
+					width="100%"
+					height="100%"
+					result="thing0"
+				/>
+				<feImage
+					href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3C/svg%3E"
+					x="0%"
+					y="0%"
+					width="100%"
+					height="100%"
+					result="thing1"
+				/>
+				<feImage
+					href="data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='gradient1' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%2300F'/%3E%3C/linearGradient%3E%3ClinearGradient id='gradient2' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23000'/%3E%3Cstop offset='100%25' stop-color='%230F0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' width='200' height='200' rx='25' fill='%237F7F7F' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%23000' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient1)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='url(%23gradient2)' style='mix-blend-mode: screen' /%3E%3Crect x='50' y='50' width='100' height='100' rx='25' fill='%237F7F7FBB' style='filter:blur(5px)' /%3E%3C/svg%3E"
+					x="0%"
+					y="0%"
+					width="100%"
+					height="100%"
+					result="thing2"
+				/>
+				<feDisplacementMap
+					in2="thing2"
+					in="SourceGraphic"
+					scale={displacements.red.toString()}
+					xChannelSelector="B"
+					yChannelSelector="G"
+				/>
+				<feColorMatrix
+					type="matrix"
+					values="1 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+					result="disp1"
+				/>
+				<feDisplacementMap
+					in2="thing2"
+					in="SourceGraphic"
+					scale={displacements.green.toString()}
+					xChannelSelector="B"
+					yChannelSelector="G"
+				/>
+				<feColorMatrix
+					type="matrix"
+					values="0 0 0 0 0
+                      0 1 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+					result="disp2"
+				/>
+				<feDisplacementMap
+					in2="thing2"
+					in="SourceGraphic"
+					scale={displacements.blue.toString()}
+					xChannelSelector="B"
+					yChannelSelector="G"
+				/>
+				<feColorMatrix
+					type="matrix"
+					values="0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 1 0 0
+                      0 0 0 1 0"
+					result="disp3"
+				/>
+				<feBlend in2="disp2" mode="screen" />
+				<feBlend in2="disp1" mode="screen" />
+				<feGaussianBlur stdDeviation="0.7" />
+				<feBlend in2="thing0" mode="screen" />
+				<feBlend in2="thing9" mode="multiply" />
+				<feComposite in2="thing1" operator="in" />
+				<feOffset dx="43" dy="43" />
+			</filter>
+		</svg>
+	);
+};

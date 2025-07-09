@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { Input } from "~/components/ui/input";
 
 interface ColorControlsProps {
@@ -5,29 +6,50 @@ interface ColorControlsProps {
 	onColorChange: (index: number, value: string) => void;
 }
 
+interface ColorItem {
+	id: string;
+	value: string;
+	originalIndex: number;
+}
+
 export function ColorControls({ colors, onColorChange }: ColorControlsProps) {
+	const colorItems = useMemo(() => {
+		return colors.map((color, index) => ({
+			id: `${index}-${color}`,
+			value: color,
+			originalIndex: index,
+		}));
+	}, [colors]);
+
+	const handleValueChange = (id: string, newValue: string) => {
+		const item = colorItems.find((item) => item.id === id);
+		if (item) {
+			onColorChange(item.originalIndex, newValue);
+		}
+	};
+
 	return (
 		<div className="space-y-4">
-			{colors.map((color, index) => (
-				<div key={`color-stop-${index}`} className="space-y-2">
+			{colorItems.map((item) => (
+				<div key={item.id} className="space-y-2">
 					<label
-						htmlFor={`color-${index}`}
+						htmlFor={`color-${item.id}`}
 						className="block text-sm font-medium"
 					>
-						Color Stop {index + 1}
+						Color Stop {item.originalIndex + 1}
 					</label>
 					<div className="flex gap-2">
 						<Input
-							id={`color-${index}`}
+							id={`color-${item.id}`}
 							type="color"
-							value={color}
-							onChange={(e) => onColorChange(index, e.target.value)}
+							value={item.value}
+							onChange={(e) => handleValueChange(item.id, e.target.value)}
 							className="w-12 h-10"
 						/>
 						<Input
 							type="text"
-							value={color}
-							onChange={(e) => onColorChange(index, e.target.value)}
+							value={item.value}
+							onChange={(e) => handleValueChange(item.id, e.target.value)}
 							placeholder="#ffffff"
 						/>
 					</div>

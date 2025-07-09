@@ -1,20 +1,20 @@
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import {
-	BarChart,
 	Bar,
+	BarChart,
+	CartesianGrid,
+	PolarAngleAxis,
+	PolarGrid,
+	PolarRadiusAxis,
+	Radar,
+	RadarChart,
 	ResponsiveContainer,
 	Tooltip,
 	XAxis,
 	YAxis,
-	CartesianGrid,
-	RadarChart,
-	PolarGrid,
-	PolarAngleAxis,
-	PolarRadiusAxis,
-	Radar,
 } from "recharts";
 import { CoronaLayout } from "~/components/CoronaLayout";
 
@@ -77,7 +77,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function SeasonalPatternsPage() {
-	const { countryCode } = useLoaderData<typeof loader>();
+	const { countryCode } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 
 	const { data, isLoading, isError } = useQuery<SeasonalResponse>({
 		queryKey: ["seasonal-patterns", countryCode],

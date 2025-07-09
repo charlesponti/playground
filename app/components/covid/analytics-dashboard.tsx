@@ -1,7 +1,7 @@
 "use client";
 
-import type { CovidDataRecord } from "~/types/covid";
 import { useQuery } from "@tanstack/react-query";
+import type { CovidDataRecord } from "~/types/covid";
 import { StatsOverview } from "./charts/stats-overview";
 import { TimeSeriesChart } from "./charts/time-series-chart";
 import { TopCountriesChart } from "./charts/top-countries-chart";

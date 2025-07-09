@@ -1,5 +1,5 @@
-import type { Route } from "./+types/home";
 import { Terminal } from "../components/terminal";
+import type { Route } from "./+types/home";
 
 export function meta(): Array<{
 	title?: string;

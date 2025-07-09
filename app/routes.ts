@@ -2,12 +2,16 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
   index("routes/home.tsx"),
-  route("/api/tfl", "routes/api.tfl.ts"),
-  route("/tfl", "routes/tfl.tsx"),
   route("/border-linear-gradient", "routes/border-linear-gradient.tsx"),
   route("/svg-glass-test", "routes/svg-glass-test.tsx"),
+  route("/to-do", "routes/to-do.tsx"),
+  route("/vector-search", "routes/VectorSearchPage.tsx"),
 
-  // COVID/Corona routes
+  // TFL cameras
+  route("/api/tfl", "routes/api.tfl.ts"),
+  route("/tfl", "routes/tfl.tsx"),
+
+  // COVID-19 routes
   route("/corona", "routes/corona.tsx"),
   route("/corona/:countryCode", "routes/corona.$countryCode.tsx"),
   route(

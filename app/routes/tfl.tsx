@@ -1,5 +1,4 @@
 import TFLMap from "~/components/TFLMap";
-import GoogleMapsHelp from "~/components/GoogleMapsHelp";
 import { GOOGLE_MAPS_API_KEY } from "~/lib/constants";
 
 export function meta() {
@@ -14,15 +13,9 @@ export function meta() {
 }
 
 export default function TFL() {
-	// Show help page if no API key is configured
-	if (
-		!GOOGLE_MAPS_API_KEY ||
-		GOOGLE_MAPS_API_KEY === "your_google_maps_api_key_here"
-	) {
+	if (!GOOGLE_MAPS_API_KEY) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50/30 pt-32">
-				<GoogleMapsHelp />
-			</div>
+			<div className="min-h-screen bg-gradient-to-br from-stone-50 to-amber-50/30 pt-32" />
 		);
 	}
 

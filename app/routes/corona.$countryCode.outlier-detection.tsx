@@ -1,18 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { useLoaderData } from "react-router";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import {
-	ScatterChart,
-	Scatter,
+	CartesianGrid,
+	Line,
+	LineChart,
+	ReferenceLine,
 	ResponsiveContainer,
+	Scatter,
+	ScatterChart,
 	Tooltip,
 	XAxis,
 	YAxis,
-	CartesianGrid,
-	ReferenceLine,
-	LineChart,
-	Line,
 } from "recharts";
 import { CoronaLayout } from "~/components/CoronaLayout";
 
@@ -81,7 +81,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function OutlierDetectionPage() {
-	const { countryCode } = useLoaderData<typeof loader>();
+	const { countryCode } = useLoaderData() as Awaited<ReturnType<typeof loader>>;
 	const [selectedMetric, setSelectedMetric] = useState("newCasesSmoothed");
 
 	const metrics = [

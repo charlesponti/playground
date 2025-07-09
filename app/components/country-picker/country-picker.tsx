@@ -1,5 +1,8 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
+import { Check, ChevronsUpDown, Globe, Search } from "lucide-react";
+import React, { type ReactNode, useCallback, useState } from "react";
 import { Button } from "~/components/ui/button";
 import {
 	Command,
@@ -15,9 +18,6 @@ import {
 	PopoverTrigger,
 } from "~/components/ui/popover";
 import { cn } from "~/lib/utils";
-import { useQuery } from "@tanstack/react-query";
-import { Check, ChevronsUpDown, Globe, Search } from "lucide-react";
-import { type ReactNode, useCallback, useState } from "react";
 
 type Country = {
 	name: string;

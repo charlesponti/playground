@@ -1,6 +1,5 @@
 "use client";
 
-import type { CovidDataRecord } from "~/types/covid";
 import {
 	Area,
 	AreaChart,
@@ -9,6 +8,7 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import type { CovidDataRecord } from "~/types/covid";
 
 interface VaccinationProgressProps {
 	data: CovidDataRecord[];
@@ -77,7 +77,7 @@ export function VaccinationProgress({
 					/>
 					<Tooltip
 						labelFormatter={(label) => formatDate(label as string)}
-						formatter={(value: any, name: string) => [
+						formatter={(value: number, name: string) => [
 							value ? `${value.toFixed(1)}%` : "N/A",
 							name === "partiallyVaccinated"
 								? "Partially Vaccinated"

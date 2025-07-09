@@ -1,31 +1,31 @@
 import * as React from "react";
-import { Button } from "~/components/ui/button";
-import { Card } from "~/components/ui/card";
+import { useLoaderData } from "react-router";
+import {
+	BackgroundSettings,
+	BorderWidth,
+	ColorControls,
+	GlassBackgroundControls,
+	GradientAngle,
+	OpacityControls,
+	PositionControls,
+} from "~/components/gradient-controls";
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "~/components/ui/accordion";
-import styles from "./border-linear-gradient.module.css";
-import { cn } from "~/lib/utils";
-import { useLoaderData } from "react-router";
+import { Button } from "~/components/ui/button";
+import { Card } from "~/components/ui/card";
 import {
-	BackgroundSettings,
-	GradientAngle,
-	BorderWidth,
-	ColorControls,
-	OpacityControls,
-	PositionControls,
-	GlassBackgroundControls,
-} from "~/components/gradient-controls";
-import {
-	GradientSettingsSchema,
 	type GradientSettings,
+	GradientSettingsSchema,
+	decodeSettings,
 	defaultSettings,
 	encodeSettings,
-	decodeSettings,
 } from "~/lib/gradient";
+import { cn } from "~/lib/utils";
+import styles from "./border-linear-gradient.module.css";
 
 export async function loader() {
 	return {
@@ -34,7 +34,9 @@ export async function loader() {
 }
 
 export default function Component() {
-	const { defaultSettings } = useLoaderData<typeof loader>();
+	const { defaultSettings } = useLoaderData() as Awaited<
+		ReturnType<typeof loader>
+	>;
 
 	const [degree, setDegree] = React.useState(defaultSettings.degree);
 	const [opacities, setOpacities] = React.useState(defaultSettings.opacities);

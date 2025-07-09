@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import type { TerminalLine as TerminalLineType } from "./types";
 
 interface TerminalLineProps {
