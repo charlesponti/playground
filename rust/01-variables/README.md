@@ -64,3 +64,18 @@ Robot: R2D2
 Battery: 98%
 Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick the most relevant):
+- "Why are BATTERY_LEVEL and IS_CHARGING constants in Rust? What would change if you used `let` instead?"
+- "What would happen if you tried to change BATTERY_LEVEL to 50 later in main?"
+- "Why does Rust use &str for ROBOT_NAME instead of String?"
+
+Mini-quiz (run before student moves to lesson 02):
+Q1 (recall): "Without looking — what are the three constants your robot has right now, and what are their types?"
+Q2 (application): "If you wanted to add a mutable variable tracking how many tasks the robot has completed, how would you declare it?"
+Q3 (break it): "What would happen if you declared BATTERY_LEVEL without a type annotation — would Rust infer it? As what type?"
+Spaced repetition: n/a — this is lesson 01.
+-->

@@ -58,3 +58,18 @@ Open `main.go`. Complete every line marked `// TODO`.
 ```
 go test
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "What does it mean for BatterySensor to 'implement' the Sensor interface in Go? Did you have to declare that explicitly?"
+- "Why does ReadSensor take a Sensor interface instead of a *BatterySensor directly?"
+- "What would you need to add to make a TemperatureSensor that also satisfies Sensor?"
+
+Mini-quiz (run before student moves to lesson 07):
+Q1 (recall): "How does Go know that BatterySensor implements Sensor — what's the rule?"
+Q2 (application): "If Read() returned an error for battery < 10 (not just < 0), where would you add that check?"
+Q3 (break it): "What would happen if you changed the Sensor interface to require Read() (int, int, error) — three return values?"
+Spaced repetition: "What does the two-value map lookup (val, ok := map[key]) have in common with the error pattern (val, err := fn())?" (lesson 05 → 06 pattern connection)
+-->

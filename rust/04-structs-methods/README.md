@@ -63,3 +63,18 @@ cargo test
 ```
 Robot: R2D2 | Battery: 98% (healthy) | Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does new take name: &str but the struct stores name: String? What conversion happens?"
+- "What does &self mean on battery_health? Why not self or &mut self?"
+- "Why does status call self.battery_health() instead of duplicating the match logic?"
+
+Mini-quiz (run before student moves to lesson 05):
+Q1 (recall): "What three fields does the Robot struct have?"
+Q2 (application): "If you wanted a method charge() that sets battery to 100 and is_charging to false, what would its signature need?"
+Q3 (break it): "What would happen if new returned Robot instead of taking name: &str — what would the caller need to write?"
+Spaced repetition: "In Rust, when does a function return &'static str vs String? Which does report_status return and why?" (lesson 03)
+-->

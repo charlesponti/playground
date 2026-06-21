@@ -80,3 +80,22 @@ Sensor reading: 85
 Sensor reading: 85
 Sensor reading: 85
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does BatterySensor wrap the Robot in Arc<Mutex<Robot>> instead of just holding a reference?"
+- "What does mpsc stand for, and what does it tell you about how the channel can be used?"
+- "What would happen if monitor_robot didn't join the spawned thread before returning?"
+
+Mini-quiz (final lesson — cumulative review):
+Q1 (recall): "Walk me through what monitor_robot does step by step — from creating the sensor to returning the readings."
+Q2 (application): "How would you modify monitor_robot to poll two sensors concurrently and merge the readings?"
+Q3 (break it): "What would happen if you dropped the tx (sender) inside poll_sensor before sending all readings?"
+Spaced repetition: "The Sensor trait from lesson 06 required Send — why does that trait bound matter for threads?" (lesson 06 → 07 payoff)
+
+Final wrap-up prompt (after quiz):
+"Before you finish — describe the robot's full journey: what could it do in lesson 01, and what can it do now?
+What's the single most Rust-specific thing you learned that you couldn't do the same way in another language?"
+-->

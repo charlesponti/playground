@@ -60,3 +60,18 @@ go test
 ```
 Robot: R2D2 | Battery: 98% (healthy) | Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does ReportStatus take name, level, and charging as parameters instead of reading the package-level variables directly?"
+- "What does fmt.Sprintf do differently from fmt.Printf?"
+- "If you called ReportStatus with level=100, what would the health label be and why?"
+
+Mini-quiz (run before student moves to lesson 04):
+Q1 (recall): "What does ReportStatus return — a value printed to the screen, or a string?"
+Q2 (application): "If you wanted a short version that only showed the robot's name and battery, how would you write that function signature?"
+Q3 (break it): "What would happen if you changed the return type to void (or removed the return type in Go)?"
+Spaced repetition: "What health label does BatteryHealth return for level=20? For level=21?" (lesson 02 boundary condition)
+-->

@@ -74,3 +74,18 @@ Open `src/main.rs`. Complete every line marked `// TODO`.
 ```
 cargo test
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "How does Rust know that BatterySensor implements Sensor — did you declare that anywhere explicit?"
+- "Why does read_sensor take &impl Sensor instead of &BatterySensor directly?"
+- "What's the difference between returning Err('bad'.to_string()) and panicking?"
+
+Mini-quiz (run before student moves to lesson 07):
+Q1 (recall): "What does BatterySensor::read() return when the battery is -1?"
+Q2 (application): "If you wanted a TemperatureSensor that also implements Sensor, what would you need to write?"
+Q3 (break it): "What would happen if you changed the Sensor trait's method signature to read(&mut self) — what would break?"
+Spaced repetition: "What does Option have in common with Result? When would you use one vs. the other?" (lesson 05 → 06 pattern connection)
+-->

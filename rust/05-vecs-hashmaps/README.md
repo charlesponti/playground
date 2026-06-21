@@ -61,3 +61,18 @@ Implement:
 ```
 cargo test
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "What does get_task return when the key doesn't exist — how does Option differ from Go's two-value return?"
+- "Why does add_task take &str parameters but insert String values into the HashMap?"
+- "What does .iter().sum::<i32>() do — what trait is required for sum to work?"
+
+Mini-quiz (run before student moves to lesson 06):
+Q1 (recall): "What does get_task return when the key exists? When it doesn't?"
+Q2 (application): "How would you remove a task from the registry? What HashMap method would you call?"
+Q3 (break it): "What would happen if you tried to call history.push() without having declared history as mut?"
+Spaced repetition: "Why does new() return Robot (not &Robot or Box<Robot>)? What does Rust's ownership model say happens when new() returns?" (lesson 04)
+-->

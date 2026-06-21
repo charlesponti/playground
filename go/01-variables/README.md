@@ -60,3 +60,18 @@ Robot: R2D2
 Battery: 98%
 Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick the most relevant):
+- "Why did we declare BatteryLevel and IsCharging at the package level instead of inside main?"
+- "What would happen if you forgot the %% in the format string and just used %d?"
+- "What is Go's zero value for int? For bool? Why does Go have zero values at all?"
+
+Mini-quiz (run before student moves to lesson 02):
+Q1 (recall): "Without looking — what are the three variables your robot has right now, and what are their types?"
+Q2 (application): "If you added a variable for the robot's task count, what type would it be and what value would it start at?"
+Q3 (break it): "What would happen if you tried to assign IsCharging = 1 instead of false?"
+Spaced repetition: n/a — this is lesson 01.
+-->

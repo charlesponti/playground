@@ -51,3 +51,18 @@ cargo test
 ```
 Robot: R2D2 | Battery: 98% (healthy) | Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does report_status return String instead of &str?"
+- "What's the difference between format! and println! — when would you use each?"
+- "Why does report_status take name as &str but return a String?"
+
+Mini-quiz (run before student moves to lesson 04):
+Q1 (recall): "Does report_status print to the screen or return a value? How is that useful?"
+Q2 (application): "If you wanted a terse_status that only returned 'R2D2: 98%', what would its signature look like?"
+Q3 (break it): "What would happen if you forgot the semicolon after the format! call inside report_status?"
+Spaced repetition: "What does battery_health return for level=20? For level=21? Why does the boundary matter?" (lesson 02)
+-->

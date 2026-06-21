@@ -66,3 +66,18 @@ Battery: 98%
 Charging: false
 Health: healthy
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does the order of the cases matter? What would break if you put `level < 100` before `level <= 50`?"
+- "What does the expression-less switch evaluate in each case — what is it actually checking?"
+- "Why return a string instead of just printing inside BatteryHealth?"
+
+Mini-quiz (run before student moves to lesson 03):
+Q1 (recall): "What string does BatteryHealth return for a level of 50? For 51?"
+Q2 (application): "Add a rule: level == 0 returns 'dead'. Where in the switch would you put it and why?"
+Q3 (break it): "What would happen if you removed the default case from the switch?"
+Spaced repetition: "What type is BatteryLevel, and what is Go's zero value for that type?" (lesson 01)
+-->

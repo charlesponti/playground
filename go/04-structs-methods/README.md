@@ -56,3 +56,18 @@ go test
 ```
 Robot: R2D2 | Battery: 98% (healthy) | Charging: false
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "Why does BatteryHealth use a pointer receiver (*Robot) instead of a value receiver (Robot)?"
+- "What does NewRobot give you that just writing &Robot{Name: "R2D2"} doesn't?"
+- "Why does Status call r.BatteryHealth() instead of duplicating the switch logic?"
+
+Mini-quiz (run before student moves to lesson 05):
+Q1 (recall): "What fields does the Robot struct have right now?"
+Q2 (application): "If you wanted to add a method that charges the robot to 100%, what would the signature look like?"
+Q3 (break it): "What would happen if NewRobot returned a Robot value instead of a *Robot pointer?"
+Spaced repetition: "What does ReportStatus from lesson 03 do that Status() now does instead? What did we gain by moving it to a method?" (lessons 03 → 04 evolution)
+-->

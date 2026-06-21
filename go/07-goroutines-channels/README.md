@@ -65,3 +65,22 @@ Sensor reading: 85
 Sensor reading: 85
 Sensor reading: 85
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "What would happen if you used an unbuffered channel and PollSensor tried to send before MonitorRobot was ready to receive?"
+- "Why does PollSensor take a done channel instead of a count — what does that design allow?"
+- "What is the goroutine doing that main() cannot do at the same time without concurrency?"
+
+Mini-quiz (final lesson — make it a cumulative review):
+Q1 (recall): "Walk me through what happens when MonitorRobot(r, 3) is called — step by step."
+Q2 (application): "How would you modify MonitorRobot to poll two different sensors concurrently?"
+Q3 (break it): "What would happen if you forgot to close the done channel after collecting readings?"
+Spaced repetition: "The Sensor interface made it possible to swap implementations — name one other sensor you could add without changing MonitorRobot." (lesson 06 → 07 payoff)
+
+Final wrap-up prompt (after quiz):
+"Before you finish — describe the robot's full journey: what could it do in lesson 01, and what can it do now? 
+What was the single most surprising thing you learned?"
+-->

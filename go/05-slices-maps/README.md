@@ -51,3 +51,18 @@ Implement:
 ```
 go test
 ```
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick based on where the student struggled):
+- "What does GetTask return when the key doesn't exist? Why does Go return two values here instead of just the string?"
+- "Why does AverageBattery return 0 for an empty History, and what type does it return?"
+- "What's the difference between make(map[string]string) and map[string]string{}?"
+
+Mini-quiz (run before student moves to lesson 06):
+Q1 (recall): "If you call GetTask with a key that doesn't exist, what are the two values you get back?"
+Q2 (application): "How would you remove a task from the registry? What Go built-in would you use?"
+Q3 (break it): "What would happen if RecordBattery used History = append(History, r.Battery) (without r.) ?"
+Spaced repetition: "Why does the Robot use pointer receivers — what would break if you changed RecordBattery to a value receiver?" (lesson 04)
+-->
