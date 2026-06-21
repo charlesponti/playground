@@ -1,6 +1,11 @@
-[package]
-name = "rust-playground"
-version = "0.1.0"
-edition = "2024"
-
-[dependencies]
+[workspace]
+members = [
+    "01-variables",
+    "02-control-flow",
+    "03-functions",
+    "04-structs-methods",
+    "05-vecs-hashmaps",
+    "06-errors-traits",
+    "07-threads-channels",
+]
+resolver = "2"
