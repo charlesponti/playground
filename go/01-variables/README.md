@@ -42,10 +42,12 @@ const MaxBattery = 100
 
 Open `main.go`. It is blank — write it from scratch using the task description below.
 
-1. Declare `BatteryLevel` as a package-level `int` variable with value `98`.
-2. Declare `IsCharging` as a package-level `bool` variable with value `false`.
-3. In `main`, print the battery level with format `"Battery: 98%\n"`.
-4. In `main`, print the charging status with format `"Charging: false\n"`.
+1. Declare `RobotName` as a package-level `string` variable with value `"R2D2"`.
+2. Declare `BatteryLevel` as a package-level `int` variable with value `98`.
+3. Declare `IsCharging` as a package-level `bool` variable with value `false`.
+4. In `main`, print the robot name with format `"Robot: R2D2\n"`.
+5. In `main`, print the battery level with format `"Battery: 98%\n"`.
+6. In `main`, print the charging status with format `"Charging: false\n"`.
 
 ## Run tests
 

@@ -88,7 +88,7 @@ def advance_go(from_n: int) -> None:
         sys.exit(1)
 
     shutil.copy(src, dst)
-    print(f"✓ Tests pass.")
+    print("✓ Tests pass.")
     print(f"  Copied {src.relative_to(REPO)} → {dst.relative_to(REPO)}")
     print(f"\nOpen go/{to_dir}/README.md for your next task.")
 

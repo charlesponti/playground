@@ -62,7 +62,8 @@ Open `src/lib.rs`. It is blank — write it from scratch using the task descript
    - Break if `tx.send()` returns `Err` (receiver dropped).
 
 2. Implement `monitor_robot(r: Robot, n: usize) -> Vec<i32>`:
-   - Wrap `r` in `Arc<Mutex<Robot>>` and build a `BatterySensor`.
+   - Wrap `r` in `Arc<Mutex<Robot>>` and build a `BatterySensor { robot: Arc::clone(&r) }`.
+     Note: `BatterySensor.robot` now holds `Arc<Mutex<Robot>>` instead of `&Robot` from lesson 06.
    - Create an `mpsc` channel and spawn a thread running `poll_sensor`.
    - Collect `n` values from the receiver and return them.
 

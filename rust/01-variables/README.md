@@ -46,10 +46,9 @@ println!("Battery: {}%", 98);
 
 Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
-1. Declare `BATTERY_LEVEL` as a constant of type `i32` with value `98`.
-2. Declare `IS_CHARGING` as a constant of type `bool` with value `false`.
-3. Print the battery level with format `"Battery: 98%"`.
-4. Print the charging status with format `"Charging: false"`.
+1. Declare `ROBOT_NAME` as a constant of type `&str` with value `"R2D2"`.
+2. Declare `BATTERY_LEVEL` as a constant of type `i32` with value `98`.
+3. Declare `IS_CHARGING` as a constant of type `bool` with value `false`.
 
 ## Run tests
 
@@ -57,13 +56,6 @@ Open `src/lib.rs`. It is blank — write it from scratch using the task descript
 cargo test
 ```
 
-## Goal output
-
-```
-Robot: R2D2
-Battery: 98%
-Charging: false
-```
 
 <!--
 TEACHER NOTES (not shown to students in rendered markdown)

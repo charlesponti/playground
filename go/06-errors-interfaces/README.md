@@ -47,7 +47,7 @@ if err != nil {
 Open `main.go`. It is blank — write it from scratch using the task description below.
 
 1. Define the `Sensor` interface with a single method: `Read() (int, error)`.
-2. Define `BatterySensor` as a struct holding a `*Robot`.
+2. Define `BatterySensor` as a struct with a field `robot *Robot`.
 3. Implement `Read()` on `BatterySensor`:
    - Return an error if `Battery < 0` or `Battery > 100`.
    - Otherwise return the battery level and `nil`.
