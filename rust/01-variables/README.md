@@ -44,7 +44,7 @@ println!("Battery: {}%", 98);
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 1. Declare `BATTERY_LEVEL` as a constant of type `i32` with value `98`.
 2. Declare `IS_CHARGING` as a constant of type `bool` with value `false`.

@@ -32,7 +32,7 @@ delete(m, "key")
 
 ## Your Task
 
-Open `main.go`. Complete every line marked `// TODO`.
+Open `main.go`. It is blank — write it from scratch using the task description below.
 
 Add to the `Robot` struct:
 - `Tasks   map[string]string`

@@ -39,7 +39,7 @@ default:
 
 ## Your Task
 
-Open `main.go`. Complete every line marked `// TODO`.
+Open `main.go`. It is blank — write it from scratch using the task description below.
 
 Implement `BatteryHealth(level int) string` using the following rules:
 

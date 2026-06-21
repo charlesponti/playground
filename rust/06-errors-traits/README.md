@@ -62,7 +62,7 @@ struct Wrapper<'a> {
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 1. Define the `Sensor` trait with one method: `read(&self) -> Result<i32, String>`.
 2. Define `BatterySensor<'a>` with a field `robot: &'a Robot`.

@@ -44,7 +44,7 @@ let label = if charging { "yes" } else { "no" };
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 Implement `battery_health(level: i32) -> &'static str` using the following rules:
 

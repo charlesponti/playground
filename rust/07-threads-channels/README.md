@@ -54,7 +54,7 @@ println!("{}", val);
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 1. Implement `poll_sensor(sensor, interval, tx, count)`:
    - Loop `count` times: call `sensor.read()`, send successful values on `tx`.

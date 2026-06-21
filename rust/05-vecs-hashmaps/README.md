@@ -42,7 +42,7 @@ if let Some(val) = map.get("key") {
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 Add to the `Robot` struct:
 - `tasks: HashMap<String, String>`

@@ -44,7 +44,7 @@ p.scale(2.0);
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 1. Define the `Robot` struct with fields `name: String`, `battery: i32`, `is_charging: bool`.
 2. Implement `Robot::new(name: &str) -> Robot` — battery starts at 100.

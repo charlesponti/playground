@@ -30,7 +30,7 @@ let s = format!("Hello, {}!", name);   // like println! but returns a String
 
 ## Your Task
 
-Open `src/main.rs`. Complete every line marked `// TODO`.
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
 
 Implement `report_status(name: &str, level: i32, charging: bool) -> String` so it returns:
 

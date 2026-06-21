@@ -37,7 +37,7 @@ s := fmt.Sprintf("Hello, %s!", name)
 
 ## Your Task
 
-Open `main.go`. Complete every line marked `// TODO`.
+Open `main.go`. It is blank — write it from scratch using the task description below.
 
 Implement `ReportStatus(name string, level int, charging bool) string` so that it returns:
 

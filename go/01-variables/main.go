@@ -2,14 +2,11 @@ package main
 
 import "fmt"
 
-const RobotName = "R2D2"
-
-// TODO: Declare BatteryLevel as a package-level variable of type int with value 98.
-
-// TODO: Declare IsCharging as a package-level variable of type bool with value false.
+var RobotName string = "James"
+var BatteryLevel int = 98
+var IsCharging bool = false
 
 func main() {
-	fmt.Printf("Robot: %s\n", RobotName)
-	// TODO: Print battery level — format: "Battery: 98%\n"
-	// TODO: Print charging status — format: "Charging: false\n"
+	fmt.Printf("%d%%", BatteryLevel)
+	fmt.Printf("Charging: %t", IsCharging)
 }

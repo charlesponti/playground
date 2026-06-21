@@ -44,7 +44,7 @@ if err != nil {
 
 ## Your Task
 
-Open `main.go`. Complete every line marked `// TODO`.
+Open `main.go`. It is blank — write it from scratch using the task description below.
 
 1. Define the `Sensor` interface with a single method: `Read() (int, error)`.
 2. Define `BatterySensor` as a struct holding a `*Robot`.

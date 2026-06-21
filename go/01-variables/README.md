@@ -40,7 +40,7 @@ const MaxBattery = 100
 
 ## Your Task
 
-Open `main.go`. Complete every line marked `// TODO`.
+Open `main.go`. It is blank — write it from scratch using the task description below.
 
 1. Declare `BatteryLevel` as a package-level `int` variable with value `98`.
 2. Declare `IsCharging` as a package-level `bool` variable with value `false`.
