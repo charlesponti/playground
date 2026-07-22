@@ -1,0 +1,73 @@
+# Lesson 01: Variables & Types
+
+## Context
+
+You are building a **Robot Status Monitor** — a command-line program that tracks and reports a robot's state. Each lesson adds one new capability. By lesson 07, the robot will read sensors concurrently and report full status.
+
+This is the first lesson. There is no prior code to carry over.
+
+---
+
+## Concept: Variables & Types
+
+In Rust, variables are **immutable by default**. Use `mut` to allow mutation.
+
+```rust
+let x = 5;        // immutable
+let mut y = 10;   // mutable
+y = 20;           // ok
+```
+
+Constants are always immutable and require an explicit type:
+
+```rust
+const MAX_BATTERY: i32 = 100;
+```
+
+**Common types**
+
+| Type | Description |
+|------|-------------|
+| `i32` | 32-bit signed integer (default int) |
+| `f64` | 64-bit float (default float) |
+| `bool` | `true` or `false` |
+| `&str` | string slice (for literals) |
+
+**Printing**
+
+```rust
+println!("Hello, {}!", name);   // {} uses Display
+println!("Battery: {}%", 98);
+```
+
+---
+
+## Your Task
+
+Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
+
+1. Declare `ROBOT_NAME` as a constant of type `&str` with value `"R2D2"`.
+2. Declare `BATTERY_LEVEL` as a constant of type `i32` with value `98`.
+3. Declare `IS_CHARGING` as a constant of type `bool` with value `false`.
+
+## Run tests
+
+```
+cargo test
+```
+
+
+<!--
+TEACHER NOTES (not shown to students in rendered markdown)
+
+Comprehension checks (ask after tests pass — pick the most relevant):
+- "Why are BATTERY_LEVEL and IS_CHARGING constants in Rust? What would change if you used `let` instead?"
+- "What would happen if you tried to change BATTERY_LEVEL to 50 later in main?"
+- "Why does Rust use &str for ROBOT_NAME instead of String?"
+
+Mini-quiz (run before student moves to lesson 02):
+Q1 (recall): "Without looking — what are the three constants your robot has right now, and what are their types?"
+Q2 (application): "If you wanted to add a mutable variable tracking how many tasks the robot has completed, how would you declare it?"
+Q3 (break it): "What would happen if you declared BATTERY_LEVEL without a type annotation — would Rust infer it? As what type?"
+Spaced repetition: n/a — this is lesson 01.
+-->
