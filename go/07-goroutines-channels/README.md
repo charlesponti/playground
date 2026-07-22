@@ -38,7 +38,7 @@ case <-done:
 
 ## Your Task
 
-Open `main.go`. It is blank — write it from scratch using the task description below.
+Open `main.go`. It contains your solution from the previous lesson (run `python3 eval/advance.py go N` first if the file is empty). Add the new code described below.
 
 1. Implement `PollSensor(s Sensor, interval time.Duration, ch chan<- int, done <-chan struct{})`:
    - Every `interval`, call `s.Read()`.

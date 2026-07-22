@@ -44,7 +44,7 @@ let label = if charging { "yes" } else { "no" };
 
 ## Your Task
 
-Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
+Open `src/lib.rs`. It contains your solution from the previous lesson (run `python3 eval/advance.py rust N` first if the file is empty). Add the new code described below.
 
 Implement `battery_health(level: i32) -> &'static str` using the following rules:
 

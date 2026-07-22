@@ -62,7 +62,7 @@ struct Wrapper<'a> {
 
 ## Your Task
 
-Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
+Open `src/lib.rs`. It contains your solution from the previous lesson (run `python3 eval/advance.py rust N` first if the file is empty). Add the new code described below.
 
 1. Define the `Sensor` trait with one method: `read(&self) -> Result<i32, String>`.
 2. Define `BatterySensor<'a>` with a field `robot: &'a Robot`.

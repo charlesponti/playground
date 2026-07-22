@@ -44,7 +44,7 @@ p.scale(2.0);
 
 ## Your Task
 
-Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
+Open `src/lib.rs`. It contains your solution from the previous lesson (run `python3 eval/advance.py rust N` first if the file is empty). Add the new code described below.
 
 1. Define the `Robot` struct with fields `name: String`, `battery: i32`, `is_charging: bool`.
 2. Implement `Robot::new(name: &str) -> Robot` — battery starts at 100.

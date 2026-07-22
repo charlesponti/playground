@@ -30,7 +30,7 @@ let s = format!("Hello, {}!", name);   // like println! but returns a String
 
 ## Your Task
 
-Open `src/lib.rs`. It is blank — write it from scratch using the task description below.
+Open `src/lib.rs`. It contains your solution from the previous lesson (run `python3 eval/advance.py rust N` first if the file is empty). Add the new code described below.
 
 Implement `report_status(name: &str, level: i32, charging: bool) -> String` so it returns:
 
